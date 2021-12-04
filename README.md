@@ -1,4 +1,4 @@
-#Nurse schedule maker
+# Nurse schedule maker
 
 ## サイト概要
 看護師が日常業務の予定を立て、他者と計画を共有できるアプリケーション。
