@@ -1,24 +1,36 @@
-# README
+Nurse schedule maker
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## サイト概要
+看護師が日常業務の予定を立て、他者と計画を共有できるアプリケーション。
 
-Things you may want to cover:
+### サイトテーマ
+看護師の日常業務管理ツール
 
-* Ruby version
+### テーマを選んだ理由
 
-* System dependencies
+私が看護師として病棟勤務しているとき、勤務毎に病棟のマップをコピーしたものに手書きでタイムスケジュールを記載して持ち歩いていました。
+状況が変わってメモに書き加えると見づらくなってしまったり、業務で歩き回っているうちに破損したり汚れてしまったりしていました。
+また、他のメンバーや当日のリーダーと共有できたら考えを可視化できるので便利だと思い、電子カルテと併用する想定で作成しました。
 
-* Configuration
+### ターゲットユーザ
+病棟で働く看護師
 
-* Database creation
+### 主な利用シーン
+病棟で一日業務開始前に行動計画を立てるとき、立案計画の編集をしたいとき。
 
-* Database initialization
+## 設計書
+<...>
 
-* How to run the test suite
+## チャレンジ要素一覧
+https://docs.google.com/spreadsheets/d/11va8tvlnnM6sS-oVYgvFB6_XfQgGxDs_wx5mhNHx9dU/edit?usp=sharing
 
-* Services (job queues, cache servers, search engines, etc.)
+## 開発環境
+- OS：Linux(CentOS)
+- 言語：HTML,CSS,JavaScript,Ruby,SQL
+- フレームワーク：Ruby on Rails
+- JSライブラリ：jQuery
+- IDE：Cloud9
 
-* Deployment instructions
-
-* ...
+## 使用素材
+- 外部サービスの画像素材・音声素材を使用した場合は、必ずサービス名とURLを明記してください。
+- 使用しない場合は、使用素材の項目をREADMEから削除してください。
