@@ -1,4 +1,4 @@
-#nurse_schedule_maker
+# nurse_schedule_maker
 
 ## サイト概要
 看護師のためのスケジュール管理サイト。
