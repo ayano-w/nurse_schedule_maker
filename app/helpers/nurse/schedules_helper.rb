@@ -1,0 +1,2 @@
+module Nurse::SchedulesHelper
+end
