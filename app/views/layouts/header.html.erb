@@ -1,0 +1,19 @@
+<nav class="navbar navbar-light navbar-expand-md navbar-light" style="background-color: #006888">
+  
+  <a class="navbar-brand" href="/">nurse schedule maker</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="#navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  
+  <div class="collaspe navbar-collaspe" id="#navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <%= link_to 'schedule', schedule_path(current.nurse) %>
+      </li>
+      <li class="nav-item">
+        <%= link_to 'log out', destroy_nurse_session_path, method: :delete %>
+      </li>
+    </ul>
+  </div>
+
+</nav>

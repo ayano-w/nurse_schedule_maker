@@ -5,9 +5,7 @@ class Admin < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   belongs_to :ward
-
-
-  #管理者の名前カラムはnull:false設定なし（病棟が消えるとnullになる可能性があるため）、入力時は必須項目
+  #Adminのnameカラムはnull:false設定なし（病棟が消えるとnullになる可能性があるため）、入力時は必須項目
   validates :name, presence: true
   validates :ward, presence: true
 
