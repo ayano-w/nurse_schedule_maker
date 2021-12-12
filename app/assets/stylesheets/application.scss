@@ -14,3 +14,12 @@
  *= require_self
  */
  @import "bootstrap";
+
+// 背景色の設定
+html, body{
+  height: 100%;
+}
+.full-page{
+  height: 100%;
+  background: #fffff9;
+}
