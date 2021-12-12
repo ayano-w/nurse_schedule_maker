@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-
   #管理者用
   devise_for :admins,skip: [:passwords,], controllers: {
     registrations: "admin/registrations",
@@ -11,6 +10,7 @@ Rails.application.routes.draw do
     get 'top' => 'homes#top', as: 'top'
     resources :patients, only: [:new, :create, :destroy]
     resources :nurses, only: [:index, :update]
+    resources :admins, only: [:edit, :update]
   end
 
 
@@ -21,8 +21,9 @@ Rails.application.routes.draw do
   }
 
   scope module: :nurse do
-    get 'top' => 'homes#top', as: 'top'
-    resources :nurses, only: [:show, :update]
+    root 'homes#top', as: 'top'
+    resources :nurses, only: [:update]
+    get 'nurses/mypage' => 'nurses#show', as: 'mypage'
     resources :schedules, only: [:show, :index, :create, :destroy] do
       resources :reviews, only: [:index, :create, :edit, :update, :destroy]
     end
