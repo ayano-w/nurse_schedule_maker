@@ -6,4 +6,19 @@ class Admin < ApplicationRecord
 
   belongs_to :ward
 
+
+  #管理者の名前カラムはnull:false設定なし（病棟が消えるとnullになる可能性があるため）、入力時は必須項目
+  validates :name, presence: true
+  validates :ward, presence: true
+
+
+  #emailの設定をdeviseから除外する
+   def email_required?
+     false
+   end
+
+   def email_changed?
+     false
+   end
+
 end

@@ -5,12 +5,12 @@
 
   <div class="field">
     <%= f.label :name %><br />
-    <%= f.text_field :email, autofocus: true, autocomplete: "name" %>
+    <%= f.text_field :name, autofocus: true, utocompletea: "name" %>
   </div>
 
     <div class="field">
     <%= f.label :ward_id %><br />
-    <%= f.text_field :ward_id, autofocus: true, autocomplete: "ward_id" %>
+    <%= f.collection_select :ward_id, Ward.all, :id, :ward_name, autocomplete: "ward_id" %>
   </div>
 
 
