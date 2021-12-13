@@ -1,6 +1,7 @@
 class Nurse::NursesController < ApplicationController
   def show
     @nurse = current_nurse
+    @schedules = current_nurse.schedules
   end
 
   def update

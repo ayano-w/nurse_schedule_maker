@@ -1,31 +1,44 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-6 col-sm-10 mx-auto">
+    <div class="col mx-auto">
 
       <div class="row py-2">
         <h3>マイページ</h3>
       </div>
 
-      <div class="row">
+      <div class="row mx-5 py-3">
         <h5>看護師情報の変更</h5>
 
         <%= form_with model:@nurse, local:true do |f|%>
-        <div class="form-group col-md-4">
-          <%= f.label :name, "名前" %>
-          <%= f.text_field :name, :placeholder =>"#{@nurse.name}", class: "form-control" %>
+        <div class="row mx-auto">
+          <div class="form-group col-md-4 py-1">
+            <%= f.label :name, "名前" %>
+            <%= f.text_field :name, :placeholder =>"#{@nurse.name}", class: "form-control" %>
+          </div>
+          <div class="form-grop col-md-2 py-1">
+            <%= f.label :ward_id, "病棟" %></br>
+            <%= f.collection_select :ward_id, Ward.all, :id, :ward_name, :placeholder =>"#{@nurse.ward_id}", class: "form-control" %>
+          </div>
+          <div class="col-md-3 my-auto">
+            <%= f.submit "編集内容を保存", class: "btn btn-sm btn-secondary" %>
+          </div>
         </div>
-        <div class="form-grop col-md-4">
-          <%= f.label :ward_id, "病棟" %>
-          <%= f.collection_select :ward_id, Ward.all, :id, :ward_name, :placeholder =>"#{@nurse.ward_id}", class: "form-control" %>
-        </div>
-
-        <%= f.submit "編集内容を保存", class: "btn btn-sm btn-success" %>
-
         <% end %>
 
       </div>
 
+      <div class="row mx-5 py-3">
+        <!--ログイン看護師のスケジュール一覧を日付で表示する-->
+        <h5>過去のスケジュール・レビュー</h3>
 
+        <% @schedules.each do |schedule| %>
+        <div class="row">
+          <div class="col-md-3">
+            <%= link_to "#{schedule.created_at}", schedule_path(schedule) %>
+          </div>
+        </div>
+        <% end %>
+      </div>
 
     </div>
   </div>
