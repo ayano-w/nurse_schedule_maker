@@ -1,2 +1,32 @@
-<h1>Admin::Admins#edit</h1>
-<p>Find me in app/views/admin/admins/edit.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col mx-auto">
+
+      <div class="row py-2">
+        <h3>管理者編集</h3>
+      </div>
+
+      <div class="row mx-5 py-3">
+
+        <%= form_with(model:@admin, url: admin_admin_path, local:true) do |f|%>
+        <div class="row mx-auto">
+          <div class="form-group col-md-4 py-1">
+            <%= f.label :name, "名前" %>
+            <%= f.text_field :name, :placeholder =>"#{@admin.name}", class: "form-control" %>
+          </div>
+          <div class="form-grop col-md-2 py-1">
+            <%= f.label :ward_id, "病棟" %></br>
+            <%= f.collection_select :ward_id, Ward.all, :id, :ward_name, :placeholder =>"#{@admin.ward_id}", class: "form-control" %>
+          </div>
+          <div class="col-md-3 mt-auto">
+            <%= f.submit "編集内容を保存", class: "btn btn-sm btn-secondary" %>
+          </div>
+        </div>
+        <% end %>
+
+      </div>
+
+
+    </div>
+  </div>
+</div>
