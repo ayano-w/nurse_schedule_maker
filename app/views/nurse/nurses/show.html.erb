@@ -1,2 +1,32 @@
-<h1>Nurse::Nurses#show</h1>
-<p>Find me in app/views/nurse/nurses/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-sm-10 mx-auto">
+
+      <div class="row py-2">
+        <h3>マイページ</h3>
+      </div>
+
+      <div class="row">
+        <h5>看護師情報の変更</h5>
+
+        <%= form_with model:@nurse, local:true do |f|%>
+        <div class="form-group col-md-4">
+          <%= f.label :name, "名前" %>
+          <%= f.text_field :name, :placeholder =>"#{@nurse.name}", class: "form-control" %>
+        </div>
+        <div class="form-grop col-md-4">
+          <%= f.label :ward_id, "病棟" %>
+          <%= f.collection_select :ward_id, Ward.all, :id, :ward_name, :placeholder =>"#{@nurse.ward_id}", class: "form-control" %>
+        </div>
+
+        <%= f.submit "編集内容を保存", class: "btn btn-sm btn-success" %>
+
+        <% end %>
+
+      </div>
+
+
+
+    </div>
+  </div>
+</div>
