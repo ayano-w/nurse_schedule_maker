@@ -2,13 +2,12 @@
   <div class="row">
     <div class="col mx-auto">
 
-      <div class="row py-5">
+      <div class="row pt-5 pb-2">
         <h3>患者登録</h3>
       </div>
 
 
-      <div class="row p-5 shadow">
-
+      <div class="row px-5 py-2 shadow">
         <%=  form_with(model:@patients, url: admin_patients_path, local:true) do |f| %>
         <div class="row mx-auto">
           <div class="form-group col-md-4 py-1">
@@ -24,12 +23,40 @@
             <%= f.collection_select :ward_id, Ward.all, :id, :ward_name, class: "form-selec" %>
           </div>
           <div class="col-md-2 mt-auto">
-            <%= f.submit "編集内容を保存", class: "btn btn-sm btn-secondary" %>
+            <%= f.submit "登録", class: "btn btn-sm btn-secondary" %>
           </div>
       　</div>
         <% end %>
-
       </div>
+
+
+      <div class="row pt-5 pb-2">
+        <h3>患者一覧（<%= current_admin.ward.ward_name %> 病棟）</h3>
+      </div>
+
+      <div class="row px-5 py-2 shadow">
+        <table class="table p-3">
+          <thead>
+            <tr>
+              <th>患者名</th>
+              <th>生年月日</th>
+              <th></th>
+            </tr>
+          </thead>
+
+          <% @patients.each do |patient| %>
+          <tbody>
+            <tr>
+              <td><%= patient.name %></td>
+              <td><%= patient.birthday %></td>
+              <td><%= link_to "削除", admin_patient_path(patient), method: :DELETE, class: "btn btn-secondary" %></td>
+            </tr>
+          </tbody>
+          <% end %>
+        </table>
+        
+      </div>
+
 
 
     </div>

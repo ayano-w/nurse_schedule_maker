@@ -12,6 +12,12 @@ class Admin::PatientsController < ApplicationController
     redirect_to new_admin_patient_path
   end
 
+  def destroy
+    patient = Patient.find(params[:id])
+    patient.destroy
+    redirect_to new_admin_patient_path
+  end
+
 
   private
   def patient_params
