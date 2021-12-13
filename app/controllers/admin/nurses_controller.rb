@@ -6,11 +6,14 @@ class Admin::NursesController < ApplicationController
   end
 
   def update
-    nurses = Nurse.find(nurses_params)
-    # @nurses = nurses_params.map do |id, nurse_param|
-    #   nurse = Nurse.find(id)
-      nurses.update_all
-    # end
+    # # nurses = Nurse.find
+    # # @nurses = nurses_params.map do |id, nurse_param|
+    # #   nurse = Nurse.find(id)
+    # admin_ward_id = current_admin.ward_id
+    # nurses = Nurse.where(ward_id: admin_ward_id)
+    # # binding.pry
+    # nurses.update_all(nurses_params)
+    # # end
     redirect_to admin_nurses_path
   end
 

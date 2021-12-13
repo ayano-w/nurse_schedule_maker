@@ -1,2 +1,39 @@
-<h1>Admin::Patients#new</h1>
-<p>Find me in app/views/admin/patients/new.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col mx-auto">
+
+      <div class="row py-5">
+        <h3>患者登録</h3>
+      </div>
+
+
+      <div class="row p-5 shadow">
+
+        <%=  form_with(model:@patients, url: admin_patients_path, local:true) do |f| %>
+        <div class="row mx-auto">
+          <div class="form-group col-md-4 py-1">
+            <%= f.label :name, "名前" %>
+            <%= f.text_field :name, class: "form-control" %>
+          </div>
+          <div class="form-group col-md-4 py-1">
+            <%= f.label :birthday, "生年月日　例）2120-01-01" %>
+            <%= f.text_field :birthday, class: "form-control date-picker" %>
+          </div>
+          <div class="col-md-2 py-1">
+            <%= f.label :ward_id, "病棟" %></br>
+            <%= f.collection_select :ward_id, Ward.all, :id, :ward_name, class: "form-selec" %>
+          </div>
+          <div class="col-md-2 mt-auto">
+            <%= f.submit "編集内容を保存", class: "btn btn-sm btn-secondary" %>
+          </div>
+      　</div>
+        <% end %>
+
+      </div>
+
+
+    </div>
+  </div>
+</div>
+
+
