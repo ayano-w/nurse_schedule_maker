@@ -1,2 +1,28 @@
-<h1>Nurse::Homes#top</h1>
-<p>Find me in app/views/nurse/homes/top.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col mx-auto">
+
+      <div class="row py-5">
+        <% if nurse_signed_in? %>
+          <h3><%= current_nurse.ward.ward_name %> 病棟　本日の日勤メンバー</h3>
+        <% else %>
+          <h3>本日の日勤メンバー</h3>
+        <% end %>
+
+      </div>
+
+      <div class="row p-4 shadow">
+        <% if nurse_signed_in? %>
+          <% @nurses.each do |nurse| %>
+          <div class="col-2 mr-auto">
+            <strong><%= nurse.name %></strong>
+          </div>
+          <% end %>
+        <% else %>
+          看護師ログイン後、サイトをご利用いただけます。
+        <% end %>
+      </div>
+
+    </div>
+  </div>
+</div>

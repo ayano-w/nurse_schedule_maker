@@ -1,25 +1,26 @@
 <div class="container">
   <div class="row">
     <div class="mx-auto">
-      
+
 
 
       <h2>Sign up</h2>
-      
+
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
         <%= render "nurse/shared/error_messages", resource: resource %>
-      
+
         <div class="field">
           <%= f.label :name %><br />
-          <%= f.text_field :name, autofocus: true, autocompletea: "name" %>
+          <%= f.text_field :name, autofocus: true, autocompletea: "name" %></br>
+          すでに存在する名前は登録できません。
         </div>
-      
+
           <div class="field">
           <%= f.label :ward_id %><br />
           <%= f.collection_select :ward_id, Ward.all, :id, :ward_name, autocomplete: "ward_id" %>
         </div>
-      
-      
+
+
         <div class="field">
           <%= f.label :password %>
           <% if @minimum_password_length %>
@@ -27,17 +28,17 @@
           <% end %><br />
           <%= f.password_field :password, autocomplete: "new-password" %>
         </div>
-      
+
         <div class="field">
           <%= f.label :password_confirmation %><br />
           <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
         </div>
-      
+
         <div class="actions">
           <%= f.submit "Sign up" %>
         </div>
       <% end %>
-      
+
       <%= render "nurse/shared/links" %>
 
     </div>
