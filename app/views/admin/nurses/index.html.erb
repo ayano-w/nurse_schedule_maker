@@ -8,34 +8,31 @@
 
 
       <div class="row p-5 shadow">
-          <%= form_with model: @nurses, url: admin_nurses_edit_path, method: :PATCH, local:true do |f| %>
-        <table class="table p-5">
+        <table class="table p-3">
           <thead>
             <tr>
               <th>登録看護師名</th>
-              <th>勤務選択</th>
+              <th>勤務状況変更（クリックすると切り替わります）</th>
             </tr>
           </thead>
 
-            <% @nurses.each do |nurse| %>
-            <tbody>
-              <tr>
-                <td><%= nurse.name %></td>
-                <td>
-                  <%= f.fields_for "nurses[]", nurse do |i| %>
-                    <%= i.radio_button :attendance, :true %>
-                    <%= i.label :attendance, "出勤" %>&emsp;
-                    <%= i.radio_button :attendance, :false %>
-                    <%= i.label :attendance, "休日" %>
-                  <% end %>
-                </td>
-              </tr>
-            </tbody>
-            <% end %>
-
-        </table>
-            <%= f.submit "編集内容を保存", class: "btn btn-sm btn-secondary" %>
+          <% @nurses.each do |nurse| %>
+          <tbody>
+            <tr>
+              <td><%= nurse.name %></td>
+              <td>
+                <!--# 看護師が出勤中だった場合、リンクをクリックすると休日に変更-->
+                <% if nurse.attendance == true %>
+                  <%= link_to "出勤中", admin_nurse_path(nurse), method: :PATCH, class: "admin_link" %>
+                <!--# 看護師が休日だった場合、リンクをクリックすると出勤中に変更-->
+                <% else %>
+                  <%= link_to "休日", admin_nurse_path(nurse), method: :PATCH, class: "admin_link" %>
+                <% end %>
+              </td>
+            </tr>
+          </tbody>
           <% end %>
+        </table>
       </div>
 
 

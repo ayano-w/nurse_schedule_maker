@@ -6,26 +6,33 @@ class Admin::NursesController < ApplicationController
   end
 
   def update
-    # # nurses = Nurse.find
-    # # @nurses = nurses_params.map do |id, nurse_param|
-    # #   nurse = Nurse.find(id)
-    # admin_ward_id = current_admin.ward_id
-    # nurses = Nurse.where(ward_id: admin_ward_id)
-    # # binding.pry
-    # nurses.update_all(nurses_params)
-    # # end
+    nurse = Nurse.find(params[:id])
+    
+    # 看護師が出勤中だった場合、リンクをクリックすると休日に変更
+    if nurse.attendance == true
+      nurse.attendance = false
+      nurse.save
+      
+      # 看護師が休日だった場合、リンクをクリックすると出勤中に変更
+    elsif
+      nurse.attendance = true
+      nurse.save
+    end
     redirect_to admin_nurses_path
   end
 
 
+
+
   private
   def nurse_params
-    params.require(:nurse).permit(:name, :ward_id)[:nurses]
+    params.require(:nurse).permit(:name, :ward_id, :attendance)
   end
 
   def nurses_params
     params.require(:nurse).permit(nurses: [:attendance])[:nurses]
   end
+
 
 
 
