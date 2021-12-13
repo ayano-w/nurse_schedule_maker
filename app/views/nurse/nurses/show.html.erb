@@ -2,14 +2,14 @@
   <div class="row">
     <div class="col mx-auto">
 
-      <div class="row py-2">
+      <div class="row py-5">
         <h3>マイページ</h3>
       </div>
 
       <div class="row mx-5 py-3">
         <h5>看護師情報の変更</h5>
 
-        <%= form_with model:@nurse, local:true do |f|%>
+        <%= form_with model:@nurse, local:true do |f| %>
         <div class="row mx-auto">
           <div class="form-group col-md-4 py-1">
             <%= f.label :name, "名前" %>
