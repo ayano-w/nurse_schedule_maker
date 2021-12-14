@@ -5,8 +5,9 @@ class Nurse::TasksController < ApplicationController
   end
 
   def create
-    task = Task.find(task_params)
+    task = Task.new(task_params)
     task.save
+    redirect_to schedule_path(task.task_list.schedule_id)
   end
 
   def edit
