@@ -1,45 +1,45 @@
 <div class="container">
   <div class="row">
-    <div class="mx-auto">
+    <div class="col mx-auto">
 
+      <div class="row py-5">
+          <h3>Nurse Sign up</h3>
+      </div>
 
-
-      <h2>Sign up</h2>
-
-      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-        <%= render "nurse/shared/error_messages", resource: resource %>
-
-        <div class="field">
-          <%= f.label :name %><br />
-          <%= f.text_field :name, autofocus: true, autocompletea: "name" %></br>
-          すでに存在する名前は登録できません。
-        </div>
+      <div class="row p-4 shadow">
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+          <%= render "nurse/shared/error_messages", resource: resource %>
 
           <div class="field">
-          <%= f.label :ward_id %><br />
-          <%= f.collection_select :ward_id, Ward.all, :id, :ward_name, autocomplete: "ward_id" %>
-        </div>
+            <%= f.label :name %><br />
+            <%= f.text_field :name, autofocus: true, autocompletea: "name" %></br>
+            <p class="small">同じ名前は登録できません。</p>
+          </div>
+
+            <div class="field">
+            <%= f.label :ward_id %><br />
+            <%= f.collection_select :ward_id, Ward.all, :id, :ward_name, autocomplete: "ward_id" %>
+          </div>
 
 
-        <div class="field">
-          <%= f.label :password %>
-          <% if @minimum_password_length %>
-          <em>(<%= @minimum_password_length %> characters minimum)</em>
-          <% end %><br />
-          <%= f.password_field :password, autocomplete: "new-password" %>
-        </div>
+          <div class="field">
+            <%= f.label :password %>
+            <% if @minimum_password_length %>
+            <em>(<%= @minimum_password_length %> characters minimum)</em>
+            <% end %><br />
+            <%= f.password_field :password, autocomplete: "new-password" %>
+          </div>
 
-        <div class="field">
-          <%= f.label :password_confirmation %><br />
-          <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-        </div>
+          <div class="field">
+            <%= f.label :password_confirmation %><br />
+            <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+          </div>
 
-        <div class="actions">
-          <%= f.submit "Sign up" %>
-        </div>
-      <% end %>
-
-      <%= render "nurse/shared/links" %>
+          <div class="actions">
+            <%= f.submit "Sign up" %>
+          </div>
+        <% end %>
+      </div>
 
     </div>
   </div>
