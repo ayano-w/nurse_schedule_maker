@@ -27,7 +27,7 @@ Rails.application.routes.draw do
     resources :nurses, only: [:update]
     get 'nurses/mypage' => 'nurses#show', as: 'mypage'
     resources :schedules, only: [:show, :index, :create, :destroy, :new] do
-      resources :reviews, only: [:index, :create, :edit, :update, :destroy]
+      resources :reviews, expect: [:show]
     end
     resources :task_lists, only: [:create, :destroy] do
       resources :tasks, expect: [:index, :show]

@@ -44,7 +44,7 @@
               <%#= button_tag type: 'submit', class: 'btn btn-defalt' do %><%# end %>
             <%# end %>
             <!--スケジュールから患者の行を削除する-->
-            <%= link_to "行を削除する", task_list_path(task_list), method: :delete, class: "admin_link" %>
+            <%= link_to "行を削除する", task_list_path(task_list), method: :delete, class: "body_link" %>
           </div>
         </div>
         <% end %>
@@ -64,12 +64,18 @@
       </div>
 
      <!--レビュー投稿と表示画面への遷移リンク -->
-      <div class="row p-4 mt-5">
-        <div class="col-3">
-          スケジュールにレビューをする
+      <div class="row p-4 mt-5 shadow">
+        <div class="col-4">
+          <%= link_to new_schedule_review_path(@schedule), class: "body_link lead" do %>
+            <i class="fas fa-user-edit"></i>
+            スケジュールにレビューをする
+          <% end %>
         </div>
-        <div class="col-3">
-          スケジュールへのレビューをみる
+        <div class="col-4">
+          <%= link_to schedule_reviews_path(@schedule), class: "body_link lead" do %>
+            <i class="fas fa-user-check"></i>
+            スケジュールへのレビューをみる
+          <% end %>
         </div>
       </div>
 
