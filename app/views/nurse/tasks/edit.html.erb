@@ -11,15 +11,15 @@
         <div class="row">
         <%= form_with model:[@task_list,@task], local:true do |f| %>
           <div class="row mx-auto">
-            <div class="form-group col-md-4 py-1">
+            <div class="form-group col-4 py-1 mx-auto">
               <%= f.label :task, "タスク名" %>
-              <%= f.text_field :task, :placeholder =>"#{@task.task}", class: "form-control" %>
+              <%= f.text_field :task, class: "form-control" %>
             </div>
-            <div class="form-grop col-md-2 py-1">
+            <div class="form-grop col-2 py-1 mx-auto">
               <%= f.label :task_start_time, "開始時間" %></br>
-              <%= f.text_field :task_start_time, :placeholder =>"#{@task.task_start_time}", class: "form-control" %>
+              <%= f.time_select :task_start_time, class: "form-control" %>
             </div>
-             <div class="field col-md-2 py-1" id="star">
+             <div class="field col-2 py-1 mx-auto" id="star">
                <!--#ratyを使用した優先度評価-->
               <%= f.label :rate, "優先度" %></br>
               <%= f.hidden_field :rate, id: :review_star %>
@@ -36,8 +36,9 @@
             </div>
 
             <div class="col-md-3 my-auto">
-              <%#= f.hidden_field :task_list_id, value: @schedule.id %>
-              <%= f.submit "タスク登録", class: "btn btn-sm btn-secondary" %>
+              <%= f.hidden_field :task_list_id, value: @task_list.id %>
+              <%= f.submit "タスク編集", class: "btn btn-sm btn-secondary" %>
+              <%= link_to "タスク削除", task_list_task_path(@task_list, @task), method: :delete, class: "btn btn-sm btn-secondary" %>
             </div>
           </div>
         <% end %>

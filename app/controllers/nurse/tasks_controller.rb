@@ -11,9 +11,23 @@ class Nurse::TasksController < ApplicationController
   end
 
   def edit
+    @task = Task.find(params[:task_id])
+    @task_list = TaskList.find(params[:task_list_id])
   end
 
   def update
+    task = Task.find(task_prams)
+    task.update
+    redirect_to schedule_path(task.task_list.schedule_id)
+  end
+
+  def destroy
+    task = Task.find(task_prams)
+    task.delete
+    #多分エラーになる
+    redirect_to schedule_path(task.task_list.schedule_id)
+
+
   end
 
   private
