@@ -29,8 +29,9 @@ Rails.application.routes.draw do
     resources :schedules, only: [:show, :index, :create, :destroy, :new] do
       resources :reviews, only: [:index, :create, :edit, :update, :destroy]
     end
-    resources :task_lists, only: [:create, :destroy]
-    resources :tasks, expect: [:index, :show]
+    resources :task_lists, only: [:create, :destroy] do
+      resources :tasks, expect: [:index, :show]
+    end
   end
 
 end
