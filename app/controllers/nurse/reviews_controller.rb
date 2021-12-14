@@ -3,6 +3,8 @@ class Nurse::ReviewsController < ApplicationController
   end
 
   def new
+    @schedule = Schedule.find(params[:schedule_id])
+    @review = Review.new
   end
 
   def create

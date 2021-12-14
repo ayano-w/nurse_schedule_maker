@@ -3,47 +3,26 @@
     <div class="col mx-auto">
 
       <div class="row py-5">
-        <h3>タスク新規作成</h3>
+        <h3>スケジュールへのレビュー
+          <small class="text-muted">  </small>
+        </h3>
       </div>
-
 
       <div class="row p-5 shadow">
-        <div class="row">
-        <%= form_with model:[@task_list,@task], local:true do |f| %>
-          <div class="row mx-auto">
-            <div class="form-group col-4 py-1 mx-auto">
-              <%= f.label :task, "タスク名" %>
-              <%= f.text_field :task, class: "form-control" %>
-            </div>
-            <div class="form-grop col-2 py-1 mx-auto">
-              <%= f.label :task_start_time, "開始時間" %></br>
-              <%= f.time_select :task_start_time, class: "form-control" %>
-            </div>
-             <div class="field col-2 py-1 mx-auto" id="star">
-               <!--#ratyを使用した優先度評価-->
-              <%= f.label :rate, "優先度" %></br>
-              <%= f.hidden_field :rate, id: :review_star %>
-              <script>
-                $('#star').raty({
-                   number: 3,
-                   score : 1,
-                   size : 36,
-                   starOff: '<%= asset_path('star-off.png') %>',
-                   starOn : '<%= asset_path('star-on.png') %>',
-                   scoreName: 'task[rate]'
-                });
-              </script>
-            </div>
-
-            <div class="col-md-3 my-auto">
-              <%= f.hidden_field :task_list_id, value: @task_list.id %>
-              <%= f.submit "タスク登録", class: "btn btn-sm btn-secondary" %>
-            </div>
+        <div class="lead">from <%= current_nurse.name %> to <%= @schedule.nurse.name %></div>
+        <div class="row p-5">
+        <%= form_with model:[@schedule,@review], local:true do |f| %>
+          <div class="form-group">
+            <%= f.label :review, "レビュー内容" %>
+            <%= f.text_field :review, class: "form-control" %>
           </div>
-        <% end %>
-      </div>
-
         </div>
+
+        <div class="row p-5">
+            <%= f.hidden_field :reviewer_nurse_id, value: current_nurse.id %>
+            <%= f.submit "投稿", class: "btn btn-dark col-3" %>
+        </div>
+        <% end %>
       </div>
 
 
