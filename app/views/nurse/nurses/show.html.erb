@@ -36,7 +36,7 @@
         <% @schedules.each do |schedule| %>
         <div class="row">
           <div class="col-md-3">
-            <%= link_to "#{schedule.created_at}", schedule_path(schedule) %>
+            <%= link_to "#{schedule.created_at.strftime('%m月%d日')}", schedule_path(schedule) %>
           </div>
         </div>
         <% end %>

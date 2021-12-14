@@ -11,15 +11,15 @@
         <div class="row">
         <%= form_with model:[@task_list,@task], local:true do |f| %>
           <div class="row mx-auto">
-            <div class="form-group col-md-4 py-1">
+            <div class="form-group col-4 py-1 mx-auto">
               <%= f.label :task, "タスク名" %>
               <%= f.text_field :task, class: "form-control" %>
             </div>
-            <div class="form-grop col-md-2 py-1">
+            <div class="form-grop col-2 py-1 mx-auto">
               <%= f.label :task_start_time, "開始時間" %></br>
-              <%= f.text_field :task_start_time, class: "form-control" %>
+              <%= f.time_select :task_start_time, class: "form-control" %>
             </div>
-             <div class="field col-md-2 py-1" id="star">
+             <div class="field col-2 py-1 mx-auto" id="star">
                <!--#ratyを使用した優先度評価-->
               <%= f.label :rate, "優先度" %></br>
               <%= f.hidden_field :rate, id: :review_star %>
