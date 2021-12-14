@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="row">
+    <div class="col mx-auto">
+
+      <!--見出し-->
+      <div class="row pt-5 pb-3">
+        <h3>
+          <%= Date.current.strftime('%m月%d日') %>
+          <%= current_nurse.name %>　さんの
+          スケジュール
+        </h3>
+      </div>
+
+      <div>
+        <%= form_with model: @schedule, local:true do |f| %>
+          <%= f.hidden_field :nurse_id, value: current_nurse.id %>
+          <%= f.submit "本日のスケジュールを作成する", class: "btn btn-sm btn-secondary shadow" %>
+        <% end %>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+

@@ -7,13 +7,13 @@ class Admin::NursesController < ApplicationController
 
   def update
     nurse = Nurse.find(params[:id])
-    
+
     # 看護師が出勤中だった場合、リンクをクリックすると休日に変更
     if nurse.attendance == true
       nurse.attendance = false
       nurse.save
-      
-      # 看護師が休日だった場合、リンクをクリックすると出勤中に変更
+
+    # 看護師が休日だった場合、リンクをクリックすると出勤中に変更
     elsif
       nurse.attendance = true
       nurse.save
