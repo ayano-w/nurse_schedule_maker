@@ -1,2 +1,52 @@
-<h1>Nurse::Tasks#new</h1>
-<p>Find me in app/views/nurse/tasks/new.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col mx-auto">
+
+      <div class="row py-5">
+        <h3>タスク新規作成</h3>
+      </div>
+
+
+      <div class="row p-5 shadow">
+        <div class="row">
+        <%= form_with model:@task, local:true do |f| %>
+          <div class="row mx-auto">
+            <div class="form-group col-md-4 py-1">
+              <%= f.label :task, "タスク名" %>
+              <%= f.text_field :task, :placeholder =>"#{@task.task}", class: "form-control" %>
+            </div>
+            <div class="form-grop col-md-2 py-1">
+              <%= f.label :task_start_time, "開始時間" %></br>
+              <%= f.text_field :task_start_time, :placeholder =>"#{@task.task_start_time}", class: "form-control" %>
+            </div>
+             <div class="field col-md-2 py-1" id="star">
+               <!--#ratyを使用した優先度評価-->
+              <%= f.label :rate, "優先度" %></br>
+              <%= f.hidden_field :rate, id: :review_star %>
+              <script>
+                $('#star').raty({
+                   number: 3,
+                   score : 1,
+                   size : 36,
+                   starOff: '<%= asset_path('star-off.png') %>',
+                   starOn : '<%= asset_path('star-on.png') %>',
+                   scoreName: 'task[rate]'
+                });
+              </script>
+            </div>
+
+            <div class="col-md-3 my-auto">
+              <%= f.hidden_field :task_list_id, value: @schedule.id %>
+              <%= f.submit "タスク登録", class: "btn btn-sm btn-secondary" %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</div>

@@ -1,0 +1,25 @@
+
+[1mFrom:[0m /home/ec2-user/environment/nurse_schedule_maker/app/controllers/nurse/schedules_controller.rb:11 Nurse::SchedulesController#show:
+
+     [1;34m7[0m: [32mdef[0m [1;34mshow[0m
+     [1;34m8[0m:   schedule = [1;34;4mSchedule[0m.where([35mnurse_id[0m: params[[33m:nurse_id[0m], [35mcreated_at[0m: [1;34;4mDate[0m.today)
+     [1;34m9[0m:   binding.pry
+    [1;34m10[0m:   [1;34m# if schedule.exists? == true[0m
+ => [1;34m11[0m:   @schedule = [1;34;4mSchedule[0m.find(params[[33m:id[0m])
+    [1;34m12[0m: 
+    [1;34m13[0m:   [1;34m#ログイン看護師と同じ病棟で、かつ出勤中登録されている看護師（attendance: trueで出勤中）[0m
+    [1;34m14[0m:   [1;34m#プルダウンでスケジュール切替するときに使用[0m
+    [1;34m15[0m:   @nurses = [1;34;4mNurse[0m.where([35mward_id[0m: current_nurse.ward_id, [35mattendance[0m: [1;36mtrue[0m)
+    [1;34m16[0m: 
+    [1;34m17[0m:   [1;34m#スケジュールに紐づく患者のスケジュール（１行分）を表示させる[0m
+    [1;34m18[0m:   @task_list = [1;34;4mTaskList[0m.new
+    [1;34m19[0m:   @task_lists = [1;34;4mTaskList[0m.where([35mschedule_id[0m: params[[33m:id[0m])
+    [1;34m20[0m: 
+    [1;34m21[0m: 
+    [1;34m22[0m:   [1;34m# #表示させるスケジュールに紐づく看護師[0m
+    [1;34m23[0m:   [1;34m# @nurse = Nurse.find(params[:nurse_id])[0m
+    [1;34m24[0m:   [1;34m# else[0m
+    [1;34m25[0m:   [1;34m#   redirect_to new_schedule_path[0m
+    [1;34m26[0m:   [1;34m# end[0m
+    [1;34m27[0m: [32mend[0m
+

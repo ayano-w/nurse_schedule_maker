@@ -1,2 +1,47 @@
-<h1>Nurse::Schedules#index</h1>
-<p>Find me in app/views/nurse/schedules/index.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col mx-auto">
+
+      <!--見出し-->
+      <div class="row pt-5 pb-3">
+        <h3>本日のスケジュール一覧
+        <!--  <%#= Date.current.strftime('%m月%d日') %>-->
+        <!--プルダウンで看護師名を選択して切替を押下すると、該当看護師の当日分のスケジュールshowページでへ遷移する-->
+        <!--  <%#= form_with url: schedule_path do |f| %>-->
+        <!--      <%#= f.collection_select :nurse_id, @nurses, :id, :name %>さんのスケジュール-->
+        <!--      <%#= f.submit "表示スケジュールの切り替え", class: "btn-sm btn-secondary" %>-->
+        <!--  <%# end %>-->
+        </h3>
+      </div>
+
+
+      <!--スケジュール表示-->
+      <% @schedules.each do |schedule| %>
+        <div class="row p-4 shadow">
+          <!--スケジュールのタイトル-->
+          <div class="row border-bottom">
+            <div class="col-1">
+              患者名
+            </div>
+            <div class="col-10">
+
+            </div>
+            <div class="col-1"></div>
+          </div>
+          <!--スケジュール中身、１患者さん１行表示される-->
+          <% schedule.task_lists.each do |task_list| %>
+          <div class="row border-bottom">
+            <div class="col-1">
+              <%= task_list.patient.name %>
+            </div>
+            <div class="col-9">スケジュール</div>
+            <div class="col-2">
+            </div>
+          </div>
+          <% end %>
+        </div>
+      <% end %>
+
+    </div>
+  </div>
+</div>

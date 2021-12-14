@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_13_113854) do
+ActiveRecord::Schema.define(version: 2021_12_14_111753) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -73,7 +73,7 @@ ActiveRecord::Schema.define(version: 2021_12_13_113854) do
   create_table "tasks", force: :cascade do |t|
     t.integer "task_list_id", null: false
     t.string "task", null: false
-    t.boolean "status"
+    t.boolean "status", default: true
     t.float "rate"
     t.time "task_start_time", null: false
     t.datetime "created_at", null: false

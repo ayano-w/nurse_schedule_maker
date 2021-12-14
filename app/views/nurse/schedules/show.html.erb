@@ -6,7 +6,11 @@
       <div class="row pt-5 pb-3">
         <h3>
           <%= Date.current.strftime('%m月%d日') %>
-          <%= @schedule.nurse.name %>　さんのスケジュール
+        <!--プルダウンで看護師名を選択して切替を押下すると、該当看護師の当日分のスケジュールshowページでへ遷移する-->
+          <%= form_with url: schedule_path do |f| %>
+              <%= f.collection_select :nurse_id, @nurses, :id, :name %>さんのスケジュール
+              <%= f.submit "表示スケジュールの切り替え", class: "btn-sm btn-secondary" %>
+          <% end %>
         </h3>
       </div>
 
@@ -15,7 +19,7 @@
       <div class="row p-4 shadow">
 
         <!--スケジュールのタイトル-->
-        <div class="row">
+        <div class="row border-bottom">
           <div class="col-1">
             患者名
           </div>
@@ -27,20 +31,22 @@
 
         <!--スケジュール中身、１患者さん１行表示される-->
         <% @task_lists.each do |task_list| %>
-        <div class="row">
+        <div class="row border-bottom">
           <div class="col-1">
             <%= task_list.patient.name %>
           </div>
           <div class="col-9">スケジュール</div>
           <div class="col-2">
-            <%= link_to "タスク追加", new_task_path, class: "btn btn-sm btn-secondary" %>
-            <%= link_to "行を削除する", task_list_path(task_list), method: :delete, class: "btn btn-sm btn-danger" %>
+            <!--鉛筆マークを押すとタスクが追加される-->
+            <%= link_to new_task_path do %><i class="fas fa-pencil-alt"></i><% end %>
+            <!--スケジュールから患者の行を削除する-->
+            <%= link_to "行を削除する", task_list_path(task_list), method: :delete, class: "admin_link" %>
           </div>
         </div>
         <% end %>
 
         <!--患者さんの追加-->
-        <div class="row">
+        <div class="row ">
           <div class="col-4">
             <%= form_with model:@task_list, local:true do |f| %>
               <%= f.label :patient_id, "患者選択" %>
