@@ -9,7 +9,7 @@
           <%= Date.current.strftime('%m月%d日') %>
           <%= @schedule.nurse.name %> さんのスケジュール
         </h3>
-          
+
         </div>
         <div class="col-5">
         <!--プルダウンで看護師名を選択して切替を押下すると、該当看護師の当日分のスケジュールshowページでへ遷移する-->
@@ -41,7 +41,13 @@
           <div class="col-1">
             <%= task_list.patient.name %>
           </div>
-          <div class="col-9">スケジュール</div>
+          <div class="col-9">
+            <% (Task.collect_tasks(task_list)).each do |task| %>
+            <div>
+              <%= task.task %>
+            </div>
+            <% end %>
+          </div>
           <div class="col-2">
             <!--鉛筆マークを押すとタスクが追加される-->
             <%= link_to new_task_list_task_path(task_list.id) do %><i class="fas fa-pencil-alt"></i><% end %>
