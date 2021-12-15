@@ -1,13 +1,17 @@
 class Nurse::TasksController < ApplicationController
   def new
-    @task = Task
+    @task = Task.new
     @task_list = TaskList.find(params[:task_list_id])
   end
 
   def create
-    task = Task.new(task_params)
-    task.save
-    redirect_to schedule_path(task.task_list.schedule_id)
+    @task = Task.new(task_params)
+    @task_list = TaskList.find(params[:task_list_id])
+    if @task.save
+      redirect_to schedule_path(@task.task_list.schedule_id)
+    else
+      render :new
+    end
   end
 
   def edit
