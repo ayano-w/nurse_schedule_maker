@@ -1,2 +1,36 @@
-<h1>Nurse::Reviews#index</h1>
-<p>Find me in app/views/nurse/reviews/index.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col mx-auto">
+
+      <div class="row py-5">
+        <h3><%= @schedule.created_at.strftime('%m月%d日') %> <%= @schedule.nurse.name %> さんへのレビュー一覧</h3>
+      </div>
+
+      <!--スケジュールに紐づくレビューをeachで表示する-->
+      <div class="row p-4">
+          <% @reviews.each do |review| %>
+          <div class="card m-2" style="width:15rem;">
+            <!--<img class="card-img-top" src="../image/100x60.png" alt="Card image cap">-->
+            <div class="card-body">
+              <h5 class="card-title">From <%= review.reviewer_nurse.name %> </h5>
+              <p class="card-text"><%= review.review %></p>
+
+              <!--レビューした人とと閲覧者が同じであれば、編集・削除リンクを表示する-->
+              <% if review.reviewer_nurse == current_nurse %>
+                <%= link_to edit_schedule_review_path(@schedule.id, review.id), class: "card-link body_link" do %>
+                  <i class="fas fa-user-edit"></i>編集
+                <% end %>
+                <%= link_to schedule_review_path(@schedule.id, review.id), method: :delete, class: "card-link body_link" do %>
+                  <i class="fas fa-trash"></i>削除
+                <% end %>
+              <% end %>
+
+            </div>
+          </div>
+          <% end %>
+      </div>
+
+
+    </div>
+  </div>
+</div>
