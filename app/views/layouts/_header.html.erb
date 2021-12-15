@@ -13,7 +13,6 @@
 
   <div class="collaspe navbar-collaspe" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-
       <!--看護師がログインした場合-->
       <% if nurse_signed_in? %>
       <li class="nav-item">
@@ -25,8 +24,6 @@
       <li class="nav-item">
         <%= link_to 'ログアウト', destroy_nurse_session_path, method: :delete, class: "nav-link" %>
       </li>
-
-
       <!--管理者がログインした場合-->
       <% elsif admin_signed_in? %>
       <li class="nav-item">
@@ -41,7 +38,7 @@
       <li class="nav-item">
         <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: "nav-link" %>
       </li>
-
+       <!--ログインしていない場合にtopページにアクセスした場合-->
       <% else %>
       <li class="nav-item">
         <%= link_to 'ログイン', new_nurse_session_path, class: 'nav-link' %>
@@ -50,8 +47,14 @@
         <%= link_to '新規登録', new_nurse_registration_path, class: 'nav-link' %>
       </li>
       <% end %>
-
     </ul>
   </div>
+  <% if nurse_signed_in? %>
+  <ul class="navbar-nav ml-auto login_nurse">
+      <li class="nav-item">
+        <%= current_nurse.name %>でログイン中
+      </li>
+  </ul>
+  <% end %>
 
 </nav>

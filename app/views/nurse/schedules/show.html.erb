@@ -4,14 +4,20 @@
 
       <!--見出し-->
       <div class="row pt-5 pb-3">
+        <div class="col-5">
         <h3>
           <%= Date.current.strftime('%m月%d日') %>
+          <%= @schedule.nurse.name %> さんのスケジュール
+        </h3>
+          
+        </div>
+        <div class="col-5">
         <!--プルダウンで看護師名を選択して切替を押下すると、該当看護師の当日分のスケジュールshowページでへ遷移する-->
           <%= form_with url: schedule_path do |f| %>
-              <%= f.collection_select :nurse_id, @nurses, :id, :name %>さんのスケジュール
+              <%= f.collection_select :nurse_id, @nurses, :id, :name %>
               <%= f.submit "表示スケジュールの切り替え", class: "btn-sm btn-secondary" %>
           <% end %>
-        </h3>
+        </div>
       </div>
 
 
