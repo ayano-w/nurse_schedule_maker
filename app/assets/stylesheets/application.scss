@@ -45,12 +45,20 @@ html, body{
 .fa-pencil-alt {
   color: #007bbb ;
 }
+.fa-trash{
+  color: #007bbb ;
+}
 
 // ボタンの色変更
 .btn-dark{
   background-image: linear-gradient(-20deg, #f794a4 0%, #fdd6bd 100%);
 }
 
+// ヘッダーログイン中看護師表示の文字色
 .login_nurse{
   color: #fffff9 ;
+}
+.small{
+  color: #007bbb ;
+  font-size:55% ;
 }
