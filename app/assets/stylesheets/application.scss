@@ -40,12 +40,19 @@ html, body{
   text-decoration: none;
   color: #007bbb ;
 }
+.task_link{
+  text-decoration: none;
+
+}
 
 // fontawesomeの色
 .fa-pencil-alt {
   color: #007bbb ;
 }
 .fa-trash{
+  color: #007bbb ;
+}
+.fa-plus-square{
   color: #007bbb ;
 }
 
@@ -59,10 +66,15 @@ html, body{
   color: #fffff9 ;
 }
 
-// スケジュールタイトルの装飾
+// 文字のサイズを小さくするクラス
 .small{
   font-size:80% ;
 }
+// 文字のサイズを太くくするクラス
+.learge{
+  font-weight: bold ;
+}
+// スケジュールタイトルの装飾
 .schedule_title{
   color: #504946 ;
   font-size:80% ;

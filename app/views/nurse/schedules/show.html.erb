@@ -32,7 +32,7 @@
                 患者名
               </div>
               <div class="col-6">
-                <i class="fas fa-pencil-alt"></i><span class="small">タスク追加</span>
+                <i class="far fa-plus-square"></i><span class="small">タスク追加</span>
               </div>
             </div>
           </div>
@@ -57,7 +57,7 @@
               </div>
               <div class="col-5">
                 <!--鉛筆マークを押すとタスクが追加される-->
-                <%= link_to new_task_list_task_path(task_list.id) do %><i class="fas fa-pencil-alt"></i><% end %>
+                <%= link_to new_task_list_task_path(task_list.id) do %><i class="far fa-plus-square"></i><% end %>
               </div>
             </div>
           </div>
@@ -67,8 +67,11 @@
                 <!--タスクリストに紐づくタスクを集めてeachで表示させる-->
                 <% (Task.collect_tasks(task_list)).each do |task| %>
                 <div class="col<%= ' task_rate_1' if task.rate == 1 %><%= ' task_rate_2' if task.rate == 2 %><%= ' task_rate_3' if task.rate == 3 %>">
-                  <span><%= task.task_start_time.to_s(:datetime) %></span>
-                  <span><%= task.task %></span>
+                  <span class="small"><%= task.task_start_time.to_s(:datetime) %></span>
+                  <span class="learge">
+                    <%= task.task %>
+                  </span>
+                  <span><%= link_to edit_task_list_task_path(task_list.id,task.id), local:true do %><i class="fas fa-pencil-alt"></i><% end %></span>
                 </div>
                 <% end %>
              </div>
