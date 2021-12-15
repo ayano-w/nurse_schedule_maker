@@ -1,9 +1,12 @@
 class Nurse::TasksController < ApplicationController
+
+  #タスクの作成画面
   def new
     @task = Task.new
     @task_list = TaskList.find(params[:task_list_id])
   end
 
+  #タスクの作成
   def create
     @task = Task.new(task_params)
     @task_list = TaskList.find(params[:task_list_id])
@@ -14,22 +17,23 @@ class Nurse::TasksController < ApplicationController
     end
   end
 
+  #タスクの編集画面
   def edit
-    @task = Task.find(params[:task_id])
+    @task = Task.find(params[:id])
     @task_list = TaskList.find(params[:task_list_id])
   end
 
   def update
-    task = Task.find(task_prams)
-    task.update
+    task = Task.find(params[:id])
+    task.update(task_params)
     redirect_to schedule_path(task.task_list.schedule_id)
   end
 
   def destroy
-    task = Task.find(task_prams)
+    task = Task.find(params[:id])
+    task_list=TaskList.find(params[:task_list_id])
     task.delete
-    #多分エラーになる
-    redirect_to schedule_path(task.task_list.schedule_id)
+    redirect_to schedule_path(task_list.schedule_id)
 
 
   end
