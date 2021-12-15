@@ -25,15 +25,23 @@
       <div class="row p-4 shadow">
 
         <!--スケジュールのタイトル-->
-        <div class="row border-bottom">
-          <div class="col-1">
-            患者名
+        <div class="row border-bottom schedule_title">
+          <div class="col-2">
+            <div class="row">
+              <div class="col-6">
+                患者名
+              </div>
+              <div class="col-6">
+                <i class="fas fa-pencil-alt"></i><span class="small">タスク追加</span>
+              </div>
+            </div>
           </div>
-          <div class="col-10">
+
+          <div class="col-9">
             時間スケール
           </div>
+
           <div class="col-1">
-            <i class="fas fa-pencil-alt"></i><span class="small">追加</span>
             <i class="fas fa-trash"></i><span class="small">行削除</span>
           </div>
         </div>
@@ -41,39 +49,45 @@
         <!--スケジュール中身、１患者さん１行表示される-->
         <% @task_lists.each do |task_list| %>
         <div class="row border-bottom">
-          <div class="col-1">
-            <%= task_list.patient.name %>
+
+          <div class="col-2">
+            <div class="row">
+              <div class="col-6">
+                <%= task_list.patient.name %>
+              </div>
+              <div class="col-5">
+                <!--鉛筆マークを押すとタスクが追加される-->
+                <%= link_to new_task_list_task_path(task_list.id) do %><i class="fas fa-pencil-alt"></i><% end %>
+              </div>
+            </div>
           </div>
-          <div class="col-10">
+
+          <div class="col-9">
              <div class="row">
                 <!--タスクリストに紐づくタスクを集めてeachで表示させる-->
                 <% (Task.collect_tasks(task_list)).each do |task| %>
                 <div class="col">
-                  <%= task.task_start_time %><strong><%= task.task %></strong>
+                  <small>
+                  <%= task.task_start_time.to_s(:datetime) %>
+                  </small>
+                  <strong><%= task.task %></strong>
                 </div>
                 <% end %>
              </div>
           </div>
+
           <div class="col-1">
-            <div class="row">
-              <div class="col-4">
-                <!--鉛筆マークを押すとタスクが追加される-->
-                <%= link_to new_task_list_task_path(task_list.id) do %><i class="fas fa-pencil-alt"></i><% end %>
-              </div>
-              <div class="col-4">
-                <!--スケジュールから患者の行を削除する-->
-                <%= link_to task_list_path(task_list), method: :delete, class: "body_link" do %><i class="fas fa-trash"></i><% end %>
-              </div>
-            </div>
+            <!--スケジュールから患者の行を削除する-->
+            <%= link_to task_list_path(task_list), method: :delete, class: "body_link" do %><i class="fas fa-trash"></i><% end %>
           </div>
         </div>
         <% end %>
 
         <!--患者さんの追加-->
-        <div class="row">
+        <div class="row pt-3">
           <div class="col-4">
             <%= form_with model:@task_list, local:true do |f| %>
-              <%= f.label :patient_id, "患者選択" %>
+              <%= f.label :patient_id, "患者選択", class: "small" %>
               <%= f.collection_select :patient_id, Patient.all, :id, :name, class: "form-control" %>
               <%= f.hidden_field :schedule_id, value: @schedule.id %>
               <%= f.submit "追加", class: "btn btn-sm btn-secondary" %>
@@ -103,9 +117,11 @@
       <% if @schedule.nurse_id == current_nurse.id %>
       <div class="row p-3">
         <div class="col-5">
-          <%= Date.current.strftime('%m月%d日') %>のスケジュールを削除する
+          <%= link_to schedule_path(@schedule.id), method: :delete, class: 'body_link' do %>
+            <%= Date.current.strftime('%m月%d日') %>のスケジュールを削除する
+          <% end %>
         </div>
-        <p class="small">実行後、こちらのスケジュールに対するタスクとレビューがすべて削除されます。</p>
+        <p class="small">実行後、こちらのスケジュール関連するタスクとレビューがすべて削除されます。</p>
       </div>
       <% end %>
 

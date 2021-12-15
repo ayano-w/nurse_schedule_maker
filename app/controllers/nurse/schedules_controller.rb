@@ -36,6 +36,15 @@ class Nurse::SchedulesController < ApplicationController
   end
 
   def destroy
+    schedule = Schedule.find(params[:id])
+    schedule_date = schedule.created_at.strftime("%Y%m%d")
+    schedule.destroy
+    if schedule_date == Date.today.strftime("%Y%m%d")
+      redirect_to new_schedule_path
+    else
+      redirect_to mypage_path
+    end
+
   end
 
 
