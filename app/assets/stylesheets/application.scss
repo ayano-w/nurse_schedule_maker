@@ -67,3 +67,20 @@ html, body{
   color: #504946 ;
   font-size:80% ;
 }
+
+// タスクの優先度によって、アンダーラインの色を変更する
+.task_rate_1{
+  text-decoration:underline;
+  text-decoration-color: #89c997;
+  text-decoration-thickness: 3px;
+}
+.task_rate_2{
+  text-decoration:underline;
+  text-decoration-color: #eec362;
+  text-decoration-thickness: 3px;
+}
+.task_rate_3{
+  text-decoration:underline;
+  text-decoration-color: #f19072;
+  text-decoration-thickness: 3px;
+}

@@ -66,11 +66,9 @@
              <div class="row">
                 <!--タスクリストに紐づくタスクを集めてeachで表示させる-->
                 <% (Task.collect_tasks(task_list)).each do |task| %>
-                <div class="col">
-                  <small>
-                  <%= task.task_start_time.to_s(:datetime) %>
-                  </small>
-                  <strong><%= task.task %></strong>
+                <div class="col<%= ' task_rate_1' if task.rate == 1 %><%= ' task_rate_2' if task.rate == 2 %><%= ' task_rate_3' if task.rate == 3 %>">
+                  <span><%= task.task_start_time.to_s(:datetime) %></span>
+                  <span><%= task.task %></span>
                 </div>
                 <% end %>
              </div>
