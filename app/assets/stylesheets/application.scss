@@ -96,3 +96,14 @@ html, body{
   text-decoration-color: #f19072;
   text-decoration-thickness: 3px;
 }
+
+
+// タスクの表示される位置
+.task_position-wrp{
+  position: relative;
+}
+
+.task_position{
+  position: absolute;
+  left: var(--task_p)
+}

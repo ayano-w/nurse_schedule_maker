@@ -24,9 +24,17 @@
             </div>
             <div class="form-grop col-2 py-1 mx-auto">
               <%= f.label :task_start_time, "開始時間" %></br>
-              <input type="number" name="task_start_time.hour" min="8" max="17" class="form-control">:
-              <input type="number" name="task_start_time.min" min="8" max="17" class="form-control">
-              <%#= f.time_select :task_start_time, class: "form-control" %>
+              <!--<input -->
+              <!--  type="number" -->
+              <!--  name="task_start_time" -->
+              <!--  min="8:00" max="17:00" -->
+              <!--  class="form-control">-->
+
+
+
+              <!--<input type="number" name="task_start_time.hour" min="8" max="17" class="form-control">:-->
+              <!--<input type="number" name="task_start_time.min" min="8" max="17" class="form-control">-->
+              <%= f.time_select :task_start_time, {minute_step: 10}, :min =>Tod::TimeOfDay.parse("8:00"), class: "form-control" %>
             </div>
              <div class="field col-2 py-1 mx-auto" id="star">
                <!--#ratyを使用した優先度評価-->
