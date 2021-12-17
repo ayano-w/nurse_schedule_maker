@@ -17,31 +17,10 @@
 
       <!--スケジュール表示-->
       <% @schedules.each do |schedule| %>
-        <div class="row p-4 shadow">
-          <!--スケジュールのタイトル-->
-          <div class="row border-bottom">
-            <div class="col-1">
-              患者名
-            </div>
-            <div class="col-10">
-  
-            </div>
-            <div class="col-1"></div>
-          </div>
-          <!--スケジュール中身、１患者さん１行表示される-->
-          <% schedule.task_lists.each do |task_list| %>
-          <div class="row border-bottom">
-            <div class="col-1">
-              <%= task_list.patient.name %>
-            </div>
-            <div class="col-9">スケジュール</div>
-            <div class="col-2">
-            </div>
-          </div>
-          <% end %>
-        </div>
+        <%= schedule.nurse.name %> さんのスケジュール
+        <%#= render 'schedule', task_lists: TaskList.where(schedule_id: schedule.id), task_list: @task_list, schedule: schedule %>
       <% end %>
-      
+
     </div>
   </div>
 </div>

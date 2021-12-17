@@ -16,7 +16,7 @@ class Task < ApplicationRecord
   end
 
 
-  # タスクの表示位置を開始時間で決めるための計算
+  # タスクの表示位置を開始時間に基づいて表示するための計算
   def calculation_task_position(task)
     ((task.task_start_time.seconds_since_midnight) - (60*60*8)) / (60*60*13) * 100
   end

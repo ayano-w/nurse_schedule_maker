@@ -26,8 +26,23 @@ class Nurse::SchedulesController < ApplicationController
   end
 
   def index
-    @nurses = Nurse.where(ward_id: current_nurse.ward_id, attendance: true)
+    schedules = Schedule.where(created_at: Time.zone.now.all_day)
+    nurses = Nurse.where(ward_id: current_nurse.ward_id, attendance: true)
+    nurse_id = []
+    nurses.each do |nurse|
+      nurse_id.push(nurse.id)
+    end
+      # schedules.each do |schedule|
+      #   schedule.nurse.id = nurse.id
+      #   @schedules += schedule
+      @schedules = schedules.where(nurse_id: [nurse_id] )
+    # end
+
+    # スケジュール表示で使う
+    @task_list = TaskList.new
+    # @task_lists = TaskList.where(schedule_id: params[:id])ここではparamss id受け取れない
   end
+
 
   def create
     schedule = Schedule.new(schedule_params)
