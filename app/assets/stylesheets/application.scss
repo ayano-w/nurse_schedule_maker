@@ -107,3 +107,9 @@ html, body{
   position: absolute;
   left: var(--task_p)
 }
+
+// 時間入力フォームの横幅
+.time_form {
+  width: auto;
+  display: inline-block;
+  }

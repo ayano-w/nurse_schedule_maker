@@ -6,63 +6,17 @@
         <h3>タスク新規作成</h3>
       </div>
 
-
       <div class="row p-5 shadow">
+        <!--入力に不備があった場合エラーが表示される-->
           <% if @task.errors.any? %>
             <% @task.errors.full_messages.each do |message| %>
               <%= message %>
             <% end %>
           <% end %>
-        <div class="row">
 
-
-        <%= form_with model:[@task_list,@task], method: :post, local:true do |f| %>
-          <div class="row mx-auto">
-            <div class="form-group col-4 py-1 mx-auto">
-              <%= f.label :task, "タスク名" %>
-              <%= f.text_field :task, class: "form-control" %>
-            </div>
-            <div class="form-grop col-2 py-1 mx-auto">
-              <%= f.label :task_start_time, "開始時間" %></br>
-              <!--<input -->
-              <!--  type="number" -->
-              <!--  name="task_start_time" -->
-              <!--  min="8:00" max="17:00" -->
-              <!--  class="form-control">-->
-
-
-
-              <!--<input type="number" name="task_start_time.hour" min="8" max="17" class="form-control">:-->
-              <!--<input type="number" name="task_start_time.min" min="8" max="17" class="form-control">-->
-              <%= f.time_select :task_start_time, {minute_step: 10}, :min =>Tod::TimeOfDay.parse("8:00"), class: "form-control" %>
-            </div>
-             <div class="field col-2 py-1 mx-auto" id="star">
-               <!--#ratyを使用した優先度評価-->
-              <%= f.label :rate, "優先度" %></br>
-              <%= f.hidden_field :rate, id: :review_star %>
-              <script>
-                $('#star').raty({
-                   number: 3,
-                   score : 1,
-                   size : 36,
-                   starOff: '<%= asset_path('star-off.png') %>',
-                   starOn : '<%= asset_path('star-on.png') %>',
-                   scoreName: 'task[rate]'
-                });
-              </script>
-            </div>
-
-            <div class="col-md-3 my-auto">
-              <%= f.hidden_field :task_list_id, value: @task_list.id %>
-              <%= f.submit "タスク登録", class: "btn btn-sm btn-secondary" %>
-            </div>
-          </div>
-        <% end %>
+        <!--タスク入力フォーム-->
+        <%= render 'task_form', task: @task, task_list: @task_list, method: :post, submit: '登録' %>
       </div>
-
-        </div>
-      </div>
-
 
     </div>
   </div>
