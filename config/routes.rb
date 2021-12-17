@@ -26,7 +26,7 @@ Rails.application.routes.draw do
     root 'homes#top', as: 'top'
     resources :nurses, only: [:update]
     get 'nurses/mypage' => 'nurses#show', as: 'mypage'
-    resources :schedules, only: [:show, :index, :create, :destroy, :new] do
+    resources :schedules, only: [:show, :index, :create, :destroy] do
       resources :reviews, expect: [:show]
     end
     resources :task_lists, only: [:create, :destroy] do

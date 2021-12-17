@@ -33,7 +33,9 @@
         </div>
         <div class="col-5">
           <!--鉛筆マークを押すとタスクが追加される-->
-            <%= link_to new_task_list_task_path(task_list.id) do %><i class="far fa-plus-square"></i><% end %>
+            <% if (controller.action_name == "show") && (task_list.schedule.nurse_id == current_nurse.id) %>
+              <%= link_to new_task_list_task_path(task_list.id) do %><i class="far fa-plus-square"></i><% end %>
+            <% end %>
         </div>
       </div>
     </div>
@@ -53,7 +55,11 @@
             <span class="learge">
               <%= task.task %>
             </span>
-            <span><%= link_to edit_task_list_task_path(task_list.id,task.id), local:true do %><i class="fas fa-pencil-alt"></i><% end %></span>
+            <span>
+              <% if (controller.action_name == "show") && (task_list.schedule.nurse_id == current_nurse.id) %>
+                <%= link_to edit_task_list_task_path(task_list.id,task.id), local:true do %><i class="fas fa-pencil-alt"></i><% end %>
+              <% end %>
+            </span>
           </div>
           <% end %>
        </div>
@@ -61,12 +67,15 @@
 
     <div class="col-1">
       <!--スケジュールから患者の行を削除する-->
-      <%= link_to task_list_path(task_list), method: :delete, class: "body_link" do %><i class="fas fa-trash"></i><% end %>
+      <% if (controller.action_name == "show") && (task_list.schedule.nurse_id == current_nurse.id) %>
+        <%= link_to task_list_path(task_list), method: :delete, class: "body_link" do %><i class="fas fa-trash"></i><% end %>
+      <% end %>
     </div>
   </div>
   <% end %>
 
   <!--患者さんの追加-->
+  <% if (controller.action_name == "show") && (schedule.nurse_id == current_nurse.id) %>
   <div class="row pt-3">
     <div class="col-4">
       <%= form_with model:task_list, local:true do |f| %>
@@ -77,5 +86,6 @@
       <% end %>
     </div>
   </div>
+  <% end %>
 
 </div>
