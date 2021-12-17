@@ -17,8 +17,9 @@
 
       <!--スケジュール表示-->
       <% @schedules.each do |schedule| %>
-        <%= schedule.nurse.name %> さんのスケジュール
-        <%#= render 'schedule', task_lists: TaskList.where(schedule_id: schedule.id), task_list: @task_list, schedule: schedule %>
+        <%= schedule.nurse.name %> さん
+        <%= render 'schedule', task_lists: TaskList.where(schedule_id: schedule), task_list: @task_list, schedule: schedule %>
+
       <% end %>
 
     </div>
