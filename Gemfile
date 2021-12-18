@@ -69,3 +69,7 @@ gem 'bootstrap'
 gem 'jquery-rails'
 gem 'tod'
 gem 'rails-i18n', '~> 5.1'
+gem 'dotenv-rails'
+group :production do
+  gem 'mysql2'
+end
