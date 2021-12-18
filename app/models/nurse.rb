@@ -24,6 +24,5 @@ class Nurse < ApplicationRecord
    def email_changed?
      false
    end
-
-
+   
 end

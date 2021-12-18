@@ -1,5 +1,6 @@
 class Nurse::TasksController < ApplicationController
-
+  before_action :authenticate_nurse!
+  before_action :nurse_ward_nil?
   #タスクの作成画面
   def new
     @task = Task.new

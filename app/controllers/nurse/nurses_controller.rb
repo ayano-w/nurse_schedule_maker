@@ -1,4 +1,6 @@
 class Nurse::NursesController < ApplicationController
+  before_action :authenticate_nurse!
+
   def show
     @nurse = current_nurse
     @schedules = current_nurse.schedules

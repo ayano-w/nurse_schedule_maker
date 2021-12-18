@@ -8,8 +8,6 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get 'top' => 'homes#top', as: 'top'
-    # get '/nurses' => 'nurses#index', as: 'nurses'
-    # patch '/nurses/edit' => 'nurses#update', as: 'nurses_edit'
     resources :patients, only: [:new, :create, :destroy]
     resources :nurses, only: [:index, :update]
     resources :admins, only: [:edit, :update]
@@ -26,7 +24,7 @@ Rails.application.routes.draw do
     root 'homes#top', as: 'top'
     resources :nurses, only: [:update]
     get 'nurses/mypage' => 'nurses#show', as: 'mypage'
-    resources :schedules, only: [:show, :index, :create, :destroy, :new] do
+    resources :schedules, only: [:show, :index, :create, :destroy] do
       resources :reviews, expect: [:show]
     end
     resources :task_lists, only: [:create, :destroy] do

@@ -1,14 +1,16 @@
 class Nurse::TaskListsController < ApplicationController
+  before_action :authenticate_nurse!
+  before_action :nurse_ward_nil?
 
+  #スケジュール作成画面で患者選択→追加を押すとスケジュールに選択した患者の行が追加される。
   def create
-    #スケジュール作成画面で患者選択→追加を押すとスケジュールに選択した患者の行が追加される。
     task_list = TaskList.new(task_list_params)
     task_list.save
     redirect_to schedule_path(task_list.schedule_id)
   end
 
+  #スケジュール画面で"行を削除"を押下すると該当患者の行が削除される。
   def destroy
-    #スケジュール画面で"行を削除"を押下すると該当患者の行が削除される。
     task_list = TaskList.find(params[:id])
     schedule = task_list.schedule_id
     task_list.destroy
