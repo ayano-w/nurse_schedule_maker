@@ -1,4 +1,6 @@
 class Nurse::HomesController < ApplicationController
+  before_action :authenticate_nurse!
+  before_action :nurse_ward_nil?
   def top
     if nurse_signed_in?
       #ログイン看護師と同じ病棟で、かつ出勤中登録されている看護師（attendance: trueで出勤中）

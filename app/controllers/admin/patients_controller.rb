@@ -1,4 +1,6 @@
 class Admin::PatientsController < ApplicationController
+  before_action :authenticate_admin!
+  before_action :admin_ward_nil?
 
   def new
     admin_ward_id = current_admin.ward_id

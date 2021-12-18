@@ -1,4 +1,6 @@
 class Nurse::SchedulesController < ApplicationController
+  before_action :authenticate_nurse!
+  before_action :nurse_ward_nil?
 
   # スケジュールの作成
   def new
@@ -8,17 +10,17 @@ class Nurse::SchedulesController < ApplicationController
   # スケジュールの詳細表示、編集
   def show
     @schedule = Schedule.find(params[:id])
-
-    #ログイン看護師と同じ病棟で、かつ出勤中登録されている看護師（attendance: trueで出勤中）
-    #プルダウンでスケジュール切替するときに使用
-    @nurses = Nurse.where(ward_id: current_nurse.ward_id, attendance: true)
-
     #スケジュールに紐づく患者のスケジュール（１行分）を表示させる
     @task_list = TaskList.new
     @task_lists = TaskList.where(schedule_id: params[:id])
+
+    @patients = Patient.where(ward_id: current_nurse.ward_id)
+    #ログイン看護師と同じ病棟で、かつ出勤中登録されている看護師（attendance: trueで出勤中）
+    #プルダウンでスケジュール切替するときに使用
+    @nurses = Nurse.where(ward_id: current_nurse.ward_id, attendance: true)
   end
 
-  # 今日の日付で登録されている、ログイン看護師と同じ病棟の看護師スケジュール一覧
+  # スケジュール一覧の表示(今日の日付、ログイン看護師と同じ病棟の看護師のもの）
   def index
     # @schedulesに今日の日付かつ、ログインユーザーの所属する病棟かつ、出勤日の看護師のスケジュールを格納する
     schedules = Schedule.where(created_at: Time.zone.now.all_day)
@@ -28,9 +30,6 @@ class Nurse::SchedulesController < ApplicationController
       nurse_id.push(nurse.id)
     end
       @schedules = schedules.where(nurse_id: [nurse_id] )
-
-    # スケジュール表示で使う
-    @task_list = TaskList.new
   end
 
   # スケジュールの作成

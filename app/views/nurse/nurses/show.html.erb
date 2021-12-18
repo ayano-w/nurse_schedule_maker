@@ -4,6 +4,7 @@
 
       <div class="row py-5">
         <h3>マイページ</h3>
+        <%= notice %>
       </div>
 
       <!--看護師情報編集-->
@@ -32,6 +33,9 @@
       <div class="row p-4 mt-5 shadow">
         <div class="row">
           <h5>過去のスケジュール・レビュー</h5>
+        </div>
+        <div class="row">
+          <small>患者さんが削除された場合は、タスクも削除されています。</small>
         </div>
         <% @schedules.each do |schedule| %>
         <div class="row">

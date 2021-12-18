@@ -23,7 +23,7 @@
         <% end %>
       </div>
 
-      <% if @schedules.blank? %>
+      <% if nurse_signed_in? && @schedules.blank? %>
       <div class="row p-4 mt-3">
         <%= form_with model: @schedule, local:true do |f| %>
           <%= f.hidden_field :nurse_id, value: current_nurse.id %>

@@ -74,13 +74,13 @@
   </div>
   <% end %>
 
-  <!--患者さんの追加-->
+  <!--患者行の追加-->
   <% if (controller.action_name == "show") && (schedule.nurse_id == current_nurse.id) %>
   <div class="row pt-3">
     <div class="col-4">
       <%= form_with model:task_list, local:true do |f| %>
         <%= f.label :patient_id, "患者選択", class: "small" %>
-        <%= f.collection_select :patient_id, Patient.all, :id, :name, class: "form-control" %>
+        <%= f.collection_select :patient_id, @patients, :id, :name, class: "form-control" %>
         <%= f.hidden_field :schedule_id, value: schedule.id %>
         <%= f.submit "追加", class: "btn btn-sm btn-secondary" %>
       <% end %>

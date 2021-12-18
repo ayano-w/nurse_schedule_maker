@@ -1,4 +1,6 @@
 class Admin::AdminsController < ApplicationController
+  before_action :authenticate_admin!
+
   def edit
     @admin = current_admin
   end

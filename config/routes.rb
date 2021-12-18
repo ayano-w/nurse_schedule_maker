@@ -8,8 +8,6 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get 'top' => 'homes#top', as: 'top'
-    # get '/nurses' => 'nurses#index', as: 'nurses'
-    # patch '/nurses/edit' => 'nurses#update', as: 'nurses_edit'
     resources :patients, only: [:new, :create, :destroy]
     resources :nurses, only: [:index, :update]
     resources :admins, only: [:edit, :update]
