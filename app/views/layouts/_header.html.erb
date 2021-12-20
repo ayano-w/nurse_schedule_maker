@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-dark" style="background-color:#007bbb" >
+<nav class="navbar navbar-expand-md navbar-dark" style="background-color:#006888" >
 
   <a class="navbar-brand px-3" href="/">nurse schedule maker</a>
 
@@ -53,6 +53,10 @@
       <li class="nav-item">
         <%= link_to '管理者ログイン', new_admin_session_path, class: 'nav-link' %>
       </li>
+      <li class="nav-item">
+        <%= link_to '管理者新規登録', new_admin_registration_path, class: 'nav-link' %>
+      </li>
+
       <% end %>
     </ul>
   </div>

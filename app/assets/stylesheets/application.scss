@@ -40,18 +40,19 @@ html, body{
 
 // 見出し
 h3 {
-  color:#2b2b2b;
+  padding: .25em 0 .25em .75em;
+  border-left: 6px solid #595857;
+  color:#2b2b2b ;
 }
-
 // リンクの色
 .admin_link{
   text-decoration: none;
-  color: #007bbb ;
+  color: #006888 ;
 }
 
 .body_link{
   text-decoration: none;
-  color: #007bbb ;
+  color: #006888 ;
 }
 .task_link{
   text-decoration: none;
@@ -60,13 +61,13 @@ h3 {
 
 // fontawesomeの色
 .fa-pencil-alt {
-  color: #007bbb ;
+  color: #006888 ;
 }
 .fa-trash{
-  color: #007bbb ;
+  color: #006888 ;
 }
 .fa-plus-square{
-  color: #007bbb ;
+  color: #006888 ;
 }
 
 // ボタンの色変更
@@ -126,3 +127,9 @@ h3 {
   width: auto;
   display: inline-block;
   }
+
+.btn-secondary{
+  background-color: #54917f;
+  border-color: #f8f4e6;
+  color:#f8f4e6 ;
+}

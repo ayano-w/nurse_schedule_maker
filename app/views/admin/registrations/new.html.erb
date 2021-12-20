@@ -6,40 +6,39 @@
           <h3>Admin Sign up</h3>
       </div>
 
-      <div class="row p-4 shadow">
+      <div class="row w-50 p-4 shadow">
         <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
           <%= render "admin/shared/error_messages", resource: resource %>
-
-          <div class="field">
-            <%= f.label :name %><br />
-            <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
+        <div class="row p-2">
+          <div class="form-grop col-7 col-offset-1">
+            <%= f.label :name, "名前" %><br />
+            <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "form-control" %>
           </div>
 
-          <div class="field">
-            <%= f.label :ward_id %><br />
-            <%= f.collection_select :ward_id, Ward.all, :id, :ward_name, autocomplete: "ward_id" %>
+          <div class="form-grop p-2 col-4">
+            <%= f.label :ward_id, "病棟" %><br />
+            <%= f.collection_select :ward_id, Ward.all, :id, :ward_name, autocomplete: "ward_id", class: "form-control" %>
           </div>
+        </div>
 
 
-          <div class="field">
-            <%= f.label :password %>
+          <div class="form-grop p-2">
+            <%= f.label :password, "パスワード" %>
             <% if @minimum_password_length %>
-            <em>(<%= @minimum_password_length %> characters minimum)</em>
+            <em>(<%= @minimum_password_length %> 文字以上)</em>
             <% end %><br />
-            <%= f.password_field :password, autocomplete: "new-password" %>
+            <%= f.password_field :password, autocomplete: "new-password", class: "form-control" %>
           </div>
 
-          <div class="field">
-            <%= f.label :password_confirmation %><br />
-            <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+          <div class="form-grop p-2">
+            <%= f.label :password_confirmation, "パスワード確認" %><br />
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
           </div>
 
-          <div class="actions">
-            <%= f.submit "Sign up" %>
+          <div class="form-grop p-3">
+            <%= f.submit "新規登録", class: "btn btn-sm btn-secondary" %>
           </div>
         <% end %>
-
-        <%= render "admin/shared/links" %>
       </div>
 
     </div>
