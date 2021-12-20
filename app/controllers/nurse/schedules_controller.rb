@@ -12,12 +12,12 @@ class Nurse::SchedulesController < ApplicationController
     @schedule = Schedule.find(params[:id])
     #スケジュールに紐づく患者のスケジュール（１行分）を表示させる
     @task_list = TaskList.new
-    @task_lists = TaskList.where(schedule_id: params[:id])
+    @task_lists = TaskList.includes(:tasks).where(schedule_id: params[:id])
 
     # 患者選択用
     @patients = Patient.where(ward_id: current_nurse.ward_id)
-    
-    # レビュー投稿用  
+
+    # レビュー投稿用
     @review = Review.new
 
     #ログイン看護師と同じ病棟で、かつ出勤中登録されている看護師（attendance: trueで出勤中）

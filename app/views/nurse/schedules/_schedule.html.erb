@@ -44,11 +44,11 @@
        <div class="task_position-wrp">
           <!--タスクリストに紐づくタスクを集めてeachで表示させる-->
           <% (Task.collect_tasks(task_list)).each do |task| %>
-          <div class="position-absolute start-<%= (task.id)*3 %>
+          <div class="task_position
             <%= ' task_rate_1' if task.rate == 1 %>
             <%= ' task_rate_2' if task.rate == 2 %>
-            <%= ' task_rate_3' if task.rate == 3 %>
-            task_position" style="--task_p: <%= task.calculation_task_position(task) %>%;">
+            <%= ' task_rate_3' if task.rate == 3 %>"
+            style="--task_p: <%= task.calculation_task_position(task) %>%;">
             <span class="small">
               <%= task.task_start_time.to_s(:datetime) %>
               </span>

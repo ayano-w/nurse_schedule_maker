@@ -12,7 +12,7 @@ class Task < ApplicationRecord
 
   #タスクリスト（スケジュールの中の各患者の行）に関連するタスクを集めるメソッド
   def self.collect_tasks(task_list)
-    where(task_list_id: task_list.id)
+    where(task_list_id: task_list.id).order(task_start_time: :asc)
   end
 
 
