@@ -26,18 +26,30 @@
 
      <!--レビュー投稿と表示画面への遷移リンク -->
       <div class="row p-4 mt-5 shadow">
-        <div class="col-4">
-          <%= link_to new_schedule_review_path(@schedule), class: "body_link lead" do %>
-            <i class="fas fa-user-edit"></i>
-            スケジュールにレビューをする
+        <div class="col-8">
+          <%= form_with model:[@schedule,@review], local:true do |f| %>
+          <div class="form-group row p-1">
+            <div class="col-9">
+              <%= f.label :review do %><i class="fas fa-user-edit"></i>レビューをする<% end %>
+              <%= f.text_area :review, class: "form-control" %>
+            </div>
+            <div class="col-3 align-self-end">
+            <!--reviewer_nurse_は投稿をした看護師。投稿される看護師はscheduleに紐づいている(nurse_id)-->
+              <%= f.hidden_field :reviewer_nurse_id, value: current_nurse.id %>
+              <%= f.hidden_field :schedule_id, value: @schedule.id %>
+              <%= f.submit "投稿", class: "btn btn-dark btn-sm col-3" %>
+            </div>
+          </div>
           <% end %>
         </div>
-        <div class="col-4">
-          <%= link_to schedule_reviews_path(@schedule), class: "body_link lead" do %>
-            <i class="fas fa-user-check"></i>
-            スケジュールへのレビューをみる
+        <div class="col-4 align-self-end">
+          <%= link_to schedule_reviews_path(@schedule), class: "body_link" do %>
+            他ののレビューをみる
           <% end %>
         </div>
+      </div>
+
+
       </div>
 
       <!--スケジュールを削除する（タスクもすべて削除される）。ログインユーザーにのみ表示される。-->

@@ -14,7 +14,12 @@ class Nurse::SchedulesController < ApplicationController
     @task_list = TaskList.new
     @task_lists = TaskList.where(schedule_id: params[:id])
 
+    # 患者選択用
     @patients = Patient.where(ward_id: current_nurse.ward_id)
+    
+    # レビュー投稿用  
+    @review = Review.new
+
     #ログイン看護師と同じ病棟で、かつ出勤中登録されている看護師（attendance: trueで出勤中）
     #プルダウンでスケジュール切替するときに使用
     @nurses = Nurse.where(ward_id: current_nurse.ward_id, attendance: true)

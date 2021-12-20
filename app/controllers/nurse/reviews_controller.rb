@@ -8,23 +8,11 @@ class Nurse::ReviewsController < ApplicationController
     @schedule = Schedule.find(params[:schedule_id])
   end
 
-  #レビューの投稿画面表示
-  def new
-    @schedule = Schedule.find(params[:schedule_id])
-    @review = Review.new
-  end
-
   #レビューの新規投稿
   def create
     review = Review.new(review_params)
     review.save
     redirect_to schedule_reviews_path(review.schedule_id)
-  end
-
-  #レビューの更新画面表示
-  def edit
-    @schedule = Schedule.find(params[:schedule_id])
-    @review = Review.find(params[:id])
   end
 
   #レビューの更新

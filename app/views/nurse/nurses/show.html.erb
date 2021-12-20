@@ -20,7 +20,7 @@
             </div>
             <div class="form-grop col-md-2 py-1">
               <%= f.label :ward_id, "病棟" %></br>
-              <%= f.collection_select :ward_id, Ward.all, :id, :ward_name, :placeholder =>"#{@nurse.ward_id}", class: "form-control" %>
+              <%= f.collection_select :ward_id, Ward.all, :id, :ward_name, :placeholder =>"#{@nurse.ward_id}", class: "form-select" %>
             </div>
             <div class="col-md-3 my-auto">
               <%= f.submit "編集内容を保存", class: "btn btn-sm btn-secondary" %>
@@ -40,7 +40,7 @@
         <% @schedules.each do |schedule| %>
         <div class="row">
           <div class="col-md-3">
-            <%= link_to "#{schedule.created_at.strftime('%m月%d日')}", schedule_path(schedule) %>
+            <%= link_to "#{schedule.created_at.strftime('%m月%d日')}", schedule_path(schedule), class: "body_link" %>
           </div>
         </div>
         <% end %>
