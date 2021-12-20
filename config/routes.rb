@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
 
+  namespace :admin do
+    get 'wards/new'
+  end
   #管理者用
   devise_for :admins,skip: [:passwords,], controllers: {
     registrations: "admin/registrations",
@@ -11,6 +14,7 @@ Rails.application.routes.draw do
     resources :patients, only: [:new, :create, :destroy]
     resources :nurses, only: [:index, :update]
     resources :admins, only: [:edit, :update]
+    resources :wards, only: [:new, :create, :update, :destroy]
   end
 
 

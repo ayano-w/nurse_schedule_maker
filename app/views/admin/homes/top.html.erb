@@ -8,20 +8,26 @@
 
       <div class="row p-5 shadow">
         <div class="row mx-5">
-          管理者ページでは、患者の登録と看護師の出勤登録が可能です。</br>
-          看護師画面では、出勤中の看護師のスケジュールを閲覧することができます。
+          管理者ページでは、各種登録が可能です。</br>
+          出勤中の看護師のスケジュールは看護師画面閲覧できます。
         </div>
 
         <div class="row mx-5 py-4">
-          <div class="col-2">
+          <div class="col-10 p-2">
+            <%= link_to "看護師出勤登録へ", admin_nurses_path, class: 'admin_link lead' %></br>
+            <div class="small">管理者所属病棟の看護師の登録のみ可能です。</div>
+          </div>
+          <div class="col-10 p-2">
             <%= link_to "管理者編集へ", edit_admin_admin_path(current_admin), class: 'admin_link lead' %>
           </div>
-          <div class="col-2">
-            <%= link_to "患者登録へ", new_admin_patient_path, class: 'admin_link lead' %>
+          <div class="col-10 p-2">
+            <%= link_to "患者登録へ", new_admin_patient_path, class: 'admin_link lead' %></br>
+            <div class="small">管理者所属病棟の患者の登録のみ可能です。</div>
           </div>
-          <div class="col-2">
-            <%= link_to "看護師出勤登録へ", admin_nurses_path, class: 'admin_link lead' %>
+          <div class="col-10 p-2">
+            <%= link_to "病棟登録へ", admin_wards_new_path, class: 'admin_link lead' %>
           </div>
+
         </div>
       </div>
 
