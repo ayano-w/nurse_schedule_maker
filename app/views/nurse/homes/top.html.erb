@@ -8,13 +8,13 @@
         <% else %>
           <h3>本日の日勤メンバー</h3>
         <% end %>
-
+たｔ
       </div>
 
       <div class="row p-4 shadow">
         <% if nurse_signed_in? %>
           <% @nurses.each do |nurse| %>
-          <div class="col-2 mr-auto">
+          <div class="col-2 mx-auto">
             <strong><%= nurse.name %></strong>
           </div>
           <% end %>
@@ -24,11 +24,14 @@
       </div>
 
       <% if nurse_signed_in? && @schedules.blank? %>
-      <div class="row p-4 mt-3">
-        <%= form_with model: @schedule, local:true do |f| %>
-          <%= f.hidden_field :nurse_id, value: current_nurse.id %>
-          <%= f.submit "本日のスケジュールを作成する", class: "btn btn-secondary" %>
-        <% end %>
+      <div class="row p-4 mt-3 mx-auto">
+        <div class="col-md-5 col-8 mx-auto">
+          <%= form_with model: @schedule, local:true do |f| %>
+            <%= f.hidden_field :nurse_id, value: current_nurse.id %>
+            <%= f.submit "本日のスケジュールを作成する", class: "btn btn-secondary btn-lg" %>
+            <div class="small">スケジュールは一日一つ作成できます</div>
+          <% end %>
+        </div>
       </div>
       <% end %>
 
