@@ -3,7 +3,7 @@
     <div class="col mx-auto">
 
       <div class="row py-5">
-        <h3>タスク新規作成</h3>
+        <h3>タスク新規作成  <small class="text-muted small">Pt.<%= @task_list.patient.name %> さん</small></h3>
       </div>
 
       <div class="row p-5 shadow">
@@ -17,6 +17,13 @@
         <!--タスク入力フォーム-->
         <%= render 'task_form', task: @task, task_list: @task_list, method: :post, submit: '登録' %>
       </div>
+
+      <div class="row p-4">
+        <%= link_to schedule_path(@task_list.schedule.id), class: "body_link lead" do %>
+          <i class="fas fa-arrow-circle-left"></i>タスク登録をやめる
+        <% end %>
+      </div>
+
 
     </div>
   </div>

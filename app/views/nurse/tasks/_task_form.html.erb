@@ -32,7 +32,7 @@
 
       <!--editアクションのときのみ、削除ボタンが表示される-->
       <% if controller.action_name == "edit" %>
-      　<%= link_to "タスク削除", task_list_task_path(@task_list, @task), method: :delete, class: "btn btn-sm btn-secondary" %>
+      　<%= link_to "タスク削除", task_list_task_path(@task_list, @task), method: :delete, class: "btn btn-secondary" %>
       <% end %>
     </div>
   </div>

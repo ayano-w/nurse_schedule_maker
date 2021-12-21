@@ -23,7 +23,7 @@
                 <%= f.collection_select :ward_id, Ward.all, :id, :ward_name, class: "form-select" %>
               </div>
               <div class="form-group py-1">
-                <%= f.submit "登録", class: "btn btn-sm btn-secondary" %>
+                <%= f.submit "登録", class: "btn btn-secondary" %>
               </div>
             <% end %>
           </div>
@@ -49,7 +49,7 @@
                 <tr>
                   <td><%= patient.name %></td>
                   <td><%= patient.birthday %></td>
-                  <td><%= link_to "削除", admin_patient_path(patient), method: :DELETE, class: "btn btn-secondary" %></td>
+                  <td><%= link_to "削除", admin_patient_path(patient), method: :DELETE, class: "btn btn-danger btn-sm" %></td>
                 </tr>
               </tbody>
               <% end %>
@@ -57,7 +57,7 @@
           </div>
         </div>
       </div>
-      
+
     </div>
   </div>
 </div>

@@ -1,71 +1,77 @@
 <nav class="navbar navbar-expand-md navbar-dark" style="background-color:#006888" >
 
-  <a class="navbar-brand px-3" href="/">nurse schedule maker</a>
+  <a class="navbar-brand px-3" href="/">Nurse Schedule Maker</a>
+
 
   <!--管理者だった場合アプリ名となりに管理者トップページのリンクをつける-->
   <% if admin_signed_in? %>
-    <strong><%= link_to "管理者ページ",admin_top_path, class: "header_link py-3" %></strong>
+    <strong class="px-1"><%= link_to "管理者ページ",admin_top_path, class: "header_link py-3" %></strong>
   <% end %>
 
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
-  <div class="collaspe navbar-collaspe" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav">
       <!--看護師がログインした場合-->
       <% if nurse_signed_in? %>
-      <li class="nav-item">
-        <%= link_to 'スケジュール一覧', schedules_path, class: 'nav-link' %>
+      <% if 
+      <li class="navbar-item">
+        <%= link_to '本日のマイスケジュール', schedule_path((Schedule.find_by(created_at: Time.zone.now.all_day, nurse_id: current_nurse.id)).id), class: 'nav-link active' %>
       </li>
-      <li class="nav-item">
-        <%= link_to 'マイページ', mypage_path, class: 'nav-link' %>
+      <li class="navbar-item">
+        <%= link_to 'スケジュール一覧', schedules_path, class: 'nav-link active' %>
       </li>
-      <li class="nav-item">
-        <%= link_to 'ログアウト', destroy_nurse_session_path, method: :delete, class: "nav-link" %>
-      </li>
-      <!--管理者がログインした場合-->
-      <% elsif admin_signed_in? %>
-      <li class="nav-item">
-        <%= link_to '看護師出勤登録', admin_nurses_path, class: 'nav-link' %>
-      </li>
-      <li class="nav-item">
-        <%= link_to '管理者編集', edit_admin_admin_path(current_admin), class: 'nav-link' %>
-      </li>
-      <li class="nav-item">
-        <%= link_to '患者登録', new_admin_patient_path, class: 'nav-link' %>
-      </li>
-      <li class="nav-item">
-        <%= link_to '病棟登録', admin_wards_new_path, class: 'nav-link' %>
+      <li class="navbar-item">
+        <%= link_to 'マイページ', mypage_path(current_nurse), class: 'nav-link active' %>
       </li>
 
-      <li class="nav-item">
-        <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: "nav-link" %>
+      <!--管理者がログインした場合-->
+      <% elsif admin_signed_in? %>
+      <li class="navbar-item">
+        <%= link_to '看護師出勤登録', admin_nurses_path, class: 'nav-link active' %>
+      </li>
+      <li class="navbar-item">
+        <%= link_to '管理者編集', edit_admin_admin_path(current_admin), class: 'nav-link active' %>
+      </li>
+      <li class="navbar-item">
+        <%= link_to '患者登録', new_admin_patient_path, class: 'nav-link active' %>
+      </li>
+      <li class="navbar-item">
+        <%= link_to '病棟登録', admin_wards_new_path, class: 'nav-link active' %>
       </li>
        <!--ログインしていない場合にtopページにアクセスした場合-->
       <% else %>
-      <li class="nav-item">
-        <%= link_to 'ログイン', new_nurse_session_path, class: 'nav-link' %>
+      <li class="navbar-item">
+        <%= link_to 'ログイン', new_nurse_session_path, class: 'nav-link active' %>
       </li>
-      <li class="nav-item">
-        <%= link_to '新規登録', new_nurse_registration_path, class: 'nav-link' %>
+      <li class="navbar-item">
+        <%= link_to '新規登録', new_nurse_registration_path, class: 'nav-link active' %>
       </li>
-      <li class="nav-item">
-        <%= link_to '管理者ログイン', new_admin_session_path, class: 'nav-link' %>
+      <li class="navbar-item">
+        <%= link_to '管理者ログイン', new_admin_session_path, class: 'nav-link active' %>
       </li>
-      <li class="nav-item">
-        <%= link_to '管理者新規登録', new_admin_registration_path, class: 'nav-link' %>
+      <li class="navbar-item">
+        <%= link_to '管理者新規登録', new_admin_registration_path, class: 'nav-link active' %>
       </li>
-
       <% end %>
     </ul>
-  </div>
-  <% if nurse_signed_in? %>
-  <ul class="navbar-nav ml-auto login_nurse">
-      <li class="nav-item">
+
+    <ul class="navbar-nav d-flex ms-auto">
+    <% if nurse_signed_in? %>
+      <li class="navbar-item my-auto px-3 login_nurse">
         <%= current_nurse.name %>でログイン中
       </li>
-  </ul>
-  <% end %>
+      <li class="navbar-item pe-5">
+        <%= link_to 'ログアウト', destroy_nurse_session_path, method: :delete, class: "nav-link active" %>
+      </li>
+    <% elsif admin_signed_in? %>
+      <li class="navbar-item pe-5">
+        <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete, class: "nav-link active" %>
+      </li>
+    <% end %>
+    </ul>
+  </div>
 
 </nav>

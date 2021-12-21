@@ -18,13 +18,16 @@
 // 背景色の設定
 html, body{
   height: 100%;
-}
-.full-page{
-  height: 100%;
   background-image: image-url("p0119_m.png");
+  background-size: contain;
   font-family: 'Kosugi Maru', sans-serif, 'arial';
   color:#2b2b2b;
+}
 
+.navbar-brand{
+  font-family: 'Dancing Script', cursive;
+  font-weight: bold ;
+  font-size: 24pt
 }
 
 // コンテンツ部分の設定
@@ -73,7 +76,7 @@ h3 {
 
 // ヘッダーログイン中看護師表示の文字色
 .login_nurse{
-  color: #fffff9 ;
+  color: #e6bfb2 ;
 }
 
 // 文字のサイズを小さくするクラス
@@ -90,6 +93,14 @@ h3 {
   font-size:80% ;
 }
 
+// スケジュールの時間スケール表示
+.task_time_scale{
+  display: flex;
+  justify-content:space-between;
+  padding:0;
+  margin:0;
+  list-style:none;
+}
 // タスクの優先度によって、アンダーラインの色を変更する
 .task_rate_1{
   text-decoration:underline;
@@ -136,9 +147,14 @@ h3 {
   border-color: #eebbcb;
 }
 
-
 .btn-secondary{
   background-color: #54917f;
   border-color: #f8f4e6;
   color:#f8f4e6 ;
+}
+.btn-danger{
+  background-color: #b33e5c;
+  border-color: #b33e5c;
+  color:#f8f4e6 ;
+
 }
