@@ -6,4 +6,6 @@ class Ward < ApplicationRecord
 
   # 病棟が消えたら患者と、紐づくスケジュールは消える
   has_many :patients, dependent: :destroy
+  
+  validates :ward_name, uniqueness: true
 end

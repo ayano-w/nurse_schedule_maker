@@ -14,7 +14,7 @@ class Nurse::TasksController < ApplicationController
     if @task.save
       redirect_to schedule_path(@task.task_list.schedule_id)
     else
-      render :new
+      redirect_to new_task_list_task_path(params[:task_list_id]), alert: "タスク名を入力してください"
     end
   end
 
@@ -26,8 +26,11 @@ class Nurse::TasksController < ApplicationController
 
   def update
     task = Task.find(params[:id])
-    task.update(task_params)
-    redirect_to schedule_path(task.task_list.schedule_id)
+    if task.update(task_params)
+      redirect_to schedule_path(task.task_list.schedule_id)
+    else
+      redirect_to edit_task_list_task_path(params[:task_list_id],params[:id])
+    end
   end
 
   def destroy
@@ -35,8 +38,6 @@ class Nurse::TasksController < ApplicationController
     task_list=TaskList.find(params[:task_list_id])
     task.delete
     redirect_to schedule_path(task_list.schedule_id)
-
-
   end
 
   private

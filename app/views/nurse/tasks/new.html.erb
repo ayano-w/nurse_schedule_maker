@@ -1,3 +1,7 @@
+<div class="notice">
+  <%= alert %>
+</div>
+
 <div class="container">
   <div class="row">
     <div class="col mx-auto">
@@ -7,13 +11,6 @@
       </div>
 
       <div class="row p-5 shadow">
-        <!--入力に不備があった場合エラーが表示される-->
-          <% if @task.errors.any? %>
-            <% @task.errors.full_messages.each do |message| %>
-              <%= message %>
-            <% end %>
-          <% end %>
-
         <!--タスク入力フォーム-->
         <%= render 'task_form', task: @task, task_list: @task_list, method: :post, submit: '登録' %>
       </div>

@@ -8,7 +8,7 @@ class Admin::AdminsController < ApplicationController
   def update
     admin = current_admin
     admin.update(admin_params)
-    redirect_to edit_admin_admin_path
+    redirect_to edit_admin_admin_path, notice: "編集に成功しました"
   end
 
   private

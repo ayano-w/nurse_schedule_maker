@@ -19,10 +19,6 @@ class Nurse::SchedulesController < ApplicationController
 
     # レビュー投稿用
     @review = Review.new
-
-    #ログイン看護師と同じ病棟で、かつ出勤中登録されている看護師（attendance: trueで出勤中）
-    #プルダウンでスケジュール切替するときに使用
-    @nurses = Nurse.where(ward_id: current_nurse.ward_id, attendance: true)
   end
 
   # スケジュール一覧の表示(今日の日付、ログイン看護師と同じ病棟の看護師のもの）
@@ -55,13 +51,12 @@ class Nurse::SchedulesController < ApplicationController
       redirect_to mypage_path
     end
   end
-  
+
 
   private
 
   def schedule_params
     params.require(:schedule).permit(:nurse_id)
-
   end
 
 end

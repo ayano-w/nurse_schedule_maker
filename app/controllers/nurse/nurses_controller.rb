@@ -9,7 +9,7 @@ class Nurse::NursesController < ApplicationController
   def update
     nurse = current_nurse
     nurse.update(nurse_params)
-    redirect_to mypage_path
+    redirect_to mypage_path, notice: "編集に成功しました"
   end
 
   private

@@ -10,7 +10,7 @@ class Nurse < ApplicationRecord
    has_many :schedules, dependent: :destroy
    has_many :reviews, class_name: "Review",foreign_key:"reviewer_nurse_id", dependent: :destroy
 
-   #Nursesのnameカラムはnull:false設定なし（病棟が消えるとnullになる可能性があるため）、入力時は必須項目
+   #Nursesのnameカラムnullでも可（病棟が消えるとnullになる可能性があるため）だが、入力時は必須項目
    validates :name, presence: true
    validates :ward, presence: true
 
@@ -24,5 +24,5 @@ class Nurse < ApplicationRecord
    def email_changed?
      false
    end
-   
+
 end

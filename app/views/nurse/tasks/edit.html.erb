@@ -1,3 +1,11 @@
+<!--入力に不備があった場合エラーが表示される-->
+<% if @task.errors.any? %>
+<div class="error">
+  <% @task.errors.full_messages.each do |message| %>
+    <%= message %>
+  <% end %>
+</div>
+<% end %>
 <div class="container">
   <div class="row">
     <div class="col mx-auto">
@@ -8,15 +16,8 @@
 
 
       <div class="row p-5 shadow">
-        <!--入力に不備があった場合エラーが表示される-->
-          <% if @task.errors.any? %>
-            <% @task.errors.full_messages.each do |message| %>
-              <%= message %>
-            <% end %>
-          <% end %>
-
         <!--タスク入力フォーム-->
-        <%= render 'task_form', task: @task, task_list: @task_list, method: :patch, submit: '編集' %>
+        <%= render 'task_form', task: @task, task_list: @task_list, method: :patch, submit: 'タスク編集' %>
       </div>
 
       <div class="row p-4">
