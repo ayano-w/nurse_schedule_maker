@@ -54,9 +54,8 @@ class Nurse::SchedulesController < ApplicationController
     else
       redirect_to mypage_path
     end
-
   end
-
+  
 
   private
 

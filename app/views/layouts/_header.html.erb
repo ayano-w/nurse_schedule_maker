@@ -16,9 +16,12 @@
     <ul class="navbar-nav">
       <!--看護師がログインした場合-->
       <% if nurse_signed_in? %>
-      <% if 
       <li class="navbar-item">
-        <%= link_to '本日のマイスケジュール', schedule_path((Schedule.find_by(created_at: Time.zone.now.all_day, nurse_id: current_nurse.id)).id), class: 'nav-link active' %>
+        <%# if Schedule.has_schedule? == true %>
+          <%#= link_to '本日のマイスケジュール', schedule_path((Schedule.find_by(created_at: Time.zone.now.all_day, nurse_id: current_nurse.id)).id), class: 'nav-link active' %>
+        <%# else %>
+          <%#= link_to '本日のマイスケジュール', top_path, class: 'nav-link active' %>
+        <%# end %>
       </li>
       <li class="navbar-item">
         <%= link_to 'スケジュール一覧', schedules_path, class: 'nav-link active' %>
