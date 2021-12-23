@@ -1,3 +1,7 @@
+<div class="notice">
+ <%= render "admin/shared/error_messages", resource: resource %>
+</div>
+
 <div class="container">
   <div class="row">
     <div class="col mx-auto">
@@ -8,7 +12,7 @@
 
       <div class="row w-50 p-4 shadow">
         <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-          <%= render "admin/shared/error_messages", resource: resource %>
+
         <div class="row p-2">
           <div class="form-grop col-7 col-offset-1">
             <%= f.label :name, "名前" %><br />

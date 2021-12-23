@@ -122,11 +122,13 @@ h3 {
 // タスクの表示される位置
 .task_position-wrp{
   position: relative;
+  width: 100%;
 }
 
 .task_position{
   position: relative;
-  left: var(--task_p)
+  left: var(--task_p);
+  width: 10vw;
 }
 
 // 時間入力フォームの横幅
