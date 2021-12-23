@@ -8,15 +8,22 @@ class Admin::WardsController < ApplicationController
 
   def create
     @ward = Ward.new(ward_params)
-    @ward.save
-    redirect_to admin_wards_new_path
+    if @ward.save
+      redirect_to admin_wards_new_path, notice: "登録に成功しました"
+    else
+      redirect_to admin_wards_new_path, notice: "同じ名前の病棟は登録できません"
+    end
   end
 
   def update
     @ward = Ward.find(params[:id])
-    @ward.update(ward_params)
-    redirect_to admin_wards_new_path
+    if @ward.update(ward_params)
+      redirect_to admin_wards_new_path, notice: "編集しました"
+    else
+      redirect_to admin_wards_new_path, notice: "同じ名前の病棟は登録できません"
+    end
   end
+  
 
   def destroy
     @ward = Ward.find(params[:id])

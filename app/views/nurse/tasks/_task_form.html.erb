@@ -1,7 +1,7 @@
 <%= form_with model:[@task_list,@task], method: method, local:true do |f| %>
   <div class="row mx-auto">
     <div class="form-group col-4 py-1 mx-auto">
-      <%= f.label :task, "タスク名" %>
+      <%= f.label :task, "タスク名（10文字以内）" %>
       <%= f.text_field :task, class: "form-control" %>
     </div>
 

@@ -14,7 +14,7 @@ class Nurse::TasksController < ApplicationController
     if @task.save
       redirect_to schedule_path(@task.task_list.schedule_id)
     else
-      redirect_to new_task_list_task_path(params[:task_list_id]), alert: "タスク名を入力してください"
+      redirect_to new_task_list_task_path(params[:task_list_id]), alert: "10文字以内のタスク名を入力してください"
     end
   end
 

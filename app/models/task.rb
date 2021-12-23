@@ -2,7 +2,7 @@ class Task < ApplicationRecord
 
   belongs_to :task_list
 
-  validates :task, presence: true
+  validates :task, presence: true, length: { maximum: 10}
 
   #優先度を3つの星表示するためのバリデーション
   validates :rate, numericality: {
