@@ -11,7 +11,7 @@ class Nurse < ApplicationRecord
    has_many :reviews, class_name: "Review",foreign_key:"reviewer_nurse_id", dependent: :destroy
 
    #Nursesのnameカラムnullでも可（病棟が消えるとnullになる可能性があるため）だが、入力時は必須項目
-   validates :name, presence: true
+   validates :name, presence: true, uniqueness: true
    validates :ward, presence: true
 
 
