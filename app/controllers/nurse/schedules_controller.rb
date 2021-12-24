@@ -46,9 +46,9 @@ class Nurse::SchedulesController < ApplicationController
     schedule_date = schedule.created_at.strftime("%Y%m%d")
     schedule.destroy
     if schedule_date == Date.today.strftime("%Y%m%d")
-      redirect_to top_path
+      redirect_to top_path, notice: 'スケジュールを削除しました'
     else
-      redirect_to mypage_path
+      redirect_to mypage_path, notice: 'スケジュールを削除しました'
     end
   end
 
