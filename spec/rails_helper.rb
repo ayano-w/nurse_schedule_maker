@@ -62,8 +62,8 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
 
-  # letを使用したときに、FactoryBotが使用できるように設定
+  # FactoryBotを使用できるように設定
   config.include FactoryBot::Syntax::Methods
-  # 看護師ログイン用のメソッド
-  # config.include NurseLoginModule
+  # 看護師ログイン用のメソッド読み込み
+  config.include NurseLoginModule
 end
