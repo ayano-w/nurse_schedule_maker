@@ -15,6 +15,7 @@ RSpec.describe "Nurses", type: :system do
           it '看護師の新規登録が成功' do
             visit new_nurse_registration_path
             fill_in '名前', with: nurse.name
+            fill_in '病棟', with: nurse.ward
             fill_in 'パスワード', with: nurse.password
             click_button '新規登録'
             # expect(current_path).to eq　top_path　
