@@ -77,4 +77,6 @@ gem 'dotenv-rails'
 
 group :production do
   gem 'mysql2'
+  gem 'factory_bot_rails'
+  gem 'faker'
 end
