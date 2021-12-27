@@ -65,7 +65,7 @@
     <ul class="navbar-nav d-flex ms-auto">
     <% if nurse_signed_in? %>
       <li class="navbar-item my-auto px-3 login_nurse">
-        <%= current_nurse.name %>でログイン中
+        ログイン中: Ns.<%= current_nurse.name %>
       </li>
       <li class="navbar-item pe-5">
         <%= link_to 'ログアウト', destroy_nurse_session_path, method: :delete, class: "nav-link active" %>

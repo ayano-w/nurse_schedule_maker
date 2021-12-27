@@ -11,18 +11,11 @@ require 'faker'
 # 病棟の初期データ。全４病棟
 2.times do |n|
   Ward.create!(
-    [
-      {
-        ward_name: "#{ n + 1 }S"
-      },
-      {
-        ward_name: "#{ n + 1 }N"
-      }
-    ]
+    [{ward_name: "#{ n + 1 }S"}, {ward_name: "#{ n + 1 }N"}]
     )
 end
 
-# 管理者のサンプル。１病棟1名、名前は小文字病棟名。
+# 管理者のサンプル。１病棟1名、名前は小文字で病棟名。
 Ward.all.each do |ward|
   ward.admins.create!(
     name: "#{ ward.ward_name }",
@@ -30,7 +23,7 @@ Ward.all.each do |ward|
   )
 end
 
-# 看護師のサンプル。１病棟1名ずつの設定。
+# 看護師のサンプル。１病棟10名ずつの設定。
 Ward.all.each do |ward|
   10.times do |n|
     sample_name = Faker::Name.name
@@ -53,7 +46,19 @@ Ward.all.each do |ward|
   end
 end
 
-# Nurse.all.wach do |ward|
-#   2.times do |n|
-#   end
-# end
+# スケジュールのサンプル。看護師ごとにスケジュールを二つずつ作成。
+Nurse.all.each do |nurse|
+  created_at_a = Faker::Date.between(from: 2.days.ago, to: Date.today)
+  created_at_b = Faker::Date.between(from: 5.days.ago, to: 3.days.ago)
+  nurse.schedules.create!(
+    [{created_at: created_at_a}, {created_at: created_at_b}]
+    )
+end
+
+# タスクリスト（スケジュールの中身）のサンプル
+Schedule.all.each do |schedule|
+  patients = Patient.where(ward_id: schedule.nurse.ward_id)
+  schedule.task_lists.create!(
+    patient_id: "#{(patients.where('id>=?', rand(patients.first.id..patients.last.id)).first).id}"
+    )
+end

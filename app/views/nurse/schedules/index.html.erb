@@ -11,7 +11,7 @@
       <!--スケジュール表示-->
       <% @schedules.each do |schedule| %>
       <div class= "row mb-3">
-        <%= link_to "#{ schedule.nurse.name } さん", schedule_path(schedule), class: "body_link" %>
+        <%= link_to "Ns. #{ schedule.nurse.name }", schedule_path(schedule), class: "body_link" %>
         <%= render 'schedule', task_lists: TaskList.where(schedule_id: schedule), task_list: @task_list, schedule: schedule %>
       </div>
       <% end %>
