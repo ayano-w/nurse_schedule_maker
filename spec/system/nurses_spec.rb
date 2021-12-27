@@ -58,8 +58,6 @@ RSpec.describe "Nurses", type: :system do
             expect(page).to have_content '編集に成功しました'
           end
         end
-        context '名前が未記入' do
-        end
       end
     end
 
