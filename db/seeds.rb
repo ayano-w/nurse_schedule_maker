@@ -7,6 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 require 'faker'
+require 'factory_bot_rails'
 
 # 病棟の初期データ。全４病棟
 2.times do |n|
@@ -57,8 +58,24 @@ end
 
 # タスクリスト（スケジュールの中身）のサンプル
 Schedule.all.each do |schedule|
-  patients = Patient.where(ward_id: schedule.nurse.ward_id)
-  schedule.task_lists.create!(
-    patient_id: "#{(patients.where('id>=?', rand(patients.first.id..patients.last.id)).first).id}"
+  4.times do |n|
+    patients = Patient.where(ward_id: schedule.nurse.ward_id)
+    schedule.task_lists.create!(
+      patient_id: "#{(patients.where('id>=?', rand(patients.first.id..patients.last.id)).first).id}"
+     )
+  end
+end
+
+# タスクのサンプル
+TaskList.all.each do |task_list|
+  3.times do |n|
+    rate = Faker::Number.within(range: 1..3)
+    r = Random.new
+    task_start_time = (Time.local(2000, 1, 1, 8, 0, 0) + r.rand(6*10)*60*10) - (60*60*9)
+    task_list.tasks.create!(
+      task: "サンプル",
+      rate: rate,
+      task_start_time: task_start_time
     )
+  end
 end
