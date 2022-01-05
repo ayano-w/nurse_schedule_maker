@@ -4,8 +4,7 @@ class Admin::PatientsController < ApplicationController
 
   def new
     admin_ward_id = current_admin.ward_id
-    @patients = Patient.where(ward_id: admin_ward_id)
-
+    @patients = Patient.where(ward_id: admin_ward_id).page(params[:page]).per(10)
   end
 
   def create
