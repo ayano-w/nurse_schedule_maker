@@ -28,6 +28,8 @@
               <%= f.hidden_field :reviewer_nurse_id, value: current_nurse.id %>
               <%= f.hidden_field :schedule_id, value: @schedule.id %>
               <%= f.submit "投稿", class: "btn btn-dark col-5" %>
+              <!--<%#= f.submit "投稿", class: "btn btn-dark col-5" <%= ", "data-confirm" => "本当に削除しますか？"" %>  %>-->
+
             </div>
           </div>
           <% end %>
@@ -46,7 +48,7 @@
       <% if @schedule.nurse_id == current_nurse.id %>
       <div class="row p-3">
         <div class="col-5">
-          <%= link_to schedule_path(@schedule.id), method: :delete, class: 'body_link' do %>
+          <%= link_to schedule_path(@schedule.id), method: :delete, data: { confirm: "本当に削除しますか？"}, class: 'body_link' do %>
             <%= @schedule.created_at.strftime('%m月%d日') %>のスケジュールを削除する
           <% end %>
         </div>
