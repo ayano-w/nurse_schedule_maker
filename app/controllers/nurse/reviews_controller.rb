@@ -11,6 +11,7 @@ class Nurse::ReviewsController < ApplicationController
   #レビューの新規投稿
   def create
     review = Review.new(review_params)
+    review.score = Language.get_data(review_params[:review])
     review.save
     redirect_to schedule_reviews_path(review.schedule_id)
   end
@@ -18,6 +19,7 @@ class Nurse::ReviewsController < ApplicationController
   #レビューの更新
   def update
     review = Review.find(params[:id])
+    review.score = Language.get_data(review_params[:review])
     review.update(review_params)
     redirect_to schedule_reviews_path(review.schedule_id)
   end
