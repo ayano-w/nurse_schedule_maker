@@ -9,12 +9,12 @@ class Nurse::ReviewsController < ApplicationController
   end
 
   # スコアの計算
-  def score_calculation
-
+  def confirm
     @review = Review.new(review_params)
     @review.score = Language.get_data(review_params[:review])
-    
-    
+    # redirect_to  schedule_path(@review.schedule_id)
+
+
     # #以下はschedule showを表示させるためのインスタンス変数
     # @schedule = Schedule.find(params[:schedule_id])
     # #スケジュールに紐づく患者のスケジュール（１行分）を表示させる
@@ -22,15 +22,12 @@ class Nurse::ReviewsController < ApplicationController
     # @task_lists = TaskList.includes(:tasks).where(schedule_id: params[:id])
     # # 患者選択用
     # @patients = Patient.where(ward_id: current_nurse.ward_id)
-
-    # render 'schedules/show(params[:schedule_id])'
-    # redirect_to  schedule_path(params[:schedule_id]) 
   end
-  
+
   #レビューの新規投稿
   # def create
   #   review = Review.find_by(schedule_id: params[:schedule_id], reviewer_nurse_id: current_nurse)
-    
+
   #   if review.save
   #     redirect_to schedule_reviews_path(review.schedule_id)
   #   else

@@ -31,6 +31,8 @@ Rails.application.routes.draw do
     resources :schedules, only: [:show, :index, :create, :destroy] do
       resources :reviews, expect: [:show, :new, :edit]
     end
+    post 'nurses/reviews/confirm' => 'reviews#confirm'
+
     resources :task_lists, only: [:create, :destroy] do
       resources :tasks, expect: [:index, :show]
     end

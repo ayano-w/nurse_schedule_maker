@@ -1,0 +1,10 @@
+var score = '<%= @review.score %>'
+
+console.log(score)
+if(score < 0 ){
+  if( confirm('感情分析結果は' + score + '点でした。マイナスな表現が含まれますが、投稿しますか？') ){
+    location.href = "/";
+  }
+}else{
+  confirm('感情分析結果は' + score + '点でした。投稿しますか？');
+}
