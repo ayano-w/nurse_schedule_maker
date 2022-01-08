@@ -12,8 +12,11 @@ class Nurse::ReviewsController < ApplicationController
   def create
     review = Review.new(review_params)
     review.score = Language.get_data(review_params[:review])
-    review.save
-    redirect_to schedule_reviews_path(review.schedule_id)
+    if review.save
+      redirect_to schedule_reviews_path(review.schedule_id)
+    else
+      redirect_to  schedule_path(params[:schedule_id]), notice: '既にレビュー済みです'
+    end
   end
 
   #レビューの更新
