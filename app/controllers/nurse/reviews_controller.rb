@@ -8,7 +8,7 @@ class Nurse::ReviewsController < ApplicationController
     @schedule = Schedule.find(params[:schedule_id])
   end
 
-  # スコアの計算
+  # スコアの計算と確認アラート表示
   def confirm
     @review = Review.new(review_params)
     @review.score = Language.get_data(review_params[:review])
@@ -16,13 +16,8 @@ class Nurse::ReviewsController < ApplicationController
 
   #レビューの新規投稿
   def create
-    binding.pry
-    review = Review.new(params[:data])
-    if review.save
-      redirect_to schedule_reviews_path(review.schedule_id)
-    else
-      redirect_to  schedule_path(params[:schedule_id]), notice: '既にレビュー済みです'
-    end
+    review = Review.new(review_params)
+    review.save
   end
 
   #レビューの更新
@@ -43,7 +38,7 @@ class Nurse::ReviewsController < ApplicationController
   private
 
   def review_params
-    params.require(:review).permit(:reviewer_nurse_id, :schedule_id, :review)
+    params.require(:review).permit(:reviewer_nurse_id, :schedule_id, :review, :score)
   end
 
 end

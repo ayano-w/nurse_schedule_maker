@@ -1,22 +1,16 @@
-<!--var id = '<%#= @review.id %>'-->
-<!--var reviewer_nurse_id = '<%#= @review.reviewer_nurse_id %>'-->
-<!--var schedule_id = '<%#= @review.schedule_id %>'-->
-<!--var review= '<%#= @review.review %>'-->
 var score = '<%= @review.score %>'
 var url = "/schedules/'<%= @review.schedule_id %>'/reviews";
 var data = { reviewer_nurse_id: '<%= @review.reviewer_nurse_id %>', schedule_id: '<%= @review.schedule_id %>', review: '<%= @review.review %>', score: '<%= @review.score %>' };
+var confirm_message = (score < 0 ? '感情分析結果は' + score + '点でした。ネガティブな表現が含まれますが、投稿しますか？' : '感情分析結果は' + score + '点でした。投稿しますか？');
 
-if(score < 0 ){
-  if( confirm('感情分析結果は' + score + '点でした。マイナスな表現が含まれますが、投稿しますか？') ){
-    location.href = "/";
-  }
-}else{
-  if( confirm('感情分析結果は' + score + '点でした。投稿しますか？') ){
-    $.ajax({
+
+if( confirm(confirm_message) ){
+  $.ajax({
     type: 'POST',
     url: url,
-    data: data,
-    dataType: 'text'
-    })
-  }
+    data: {review: data},
+  })
+  .done( (data) =>{
+    window.location = '<%= schedule_reviews_path(@review.schedule_id) %>';
+  })
 }
