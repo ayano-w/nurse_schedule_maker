@@ -1,14 +1,11 @@
-var id = '<%= @review.id %>'
-var reviewer_nurse_id = '<%= @review.reviewer_nurse_id %>'
-var schedule_id = '<%= @review.schedule_id %>'
-var review= '<%= @review.review %>'
+<!--var id = '<%#= @review.id %>'-->
+<!--var reviewer_nurse_id = '<%#= @review.reviewer_nurse_id %>'-->
+<!--var schedule_id = '<%#= @review.schedule_id %>'-->
+<!--var review= '<%#= @review.review %>'-->
 var score = '<%= @review.score %>'
-var url = location.href;
-<!--var data = {-->
+var url = "/schedules/'<%= @review.schedule_id %>'/reviews";
+var data = { reviewer_nurse_id: '<%= @review.reviewer_nurse_id %>', schedule_id: '<%= @review.schedule_id %>', review: '<%= @review.review %>', score: '<%= @review.score %>' };
 
-
-
-console.log(score)
 if(score < 0 ){
   if( confirm('感情分析結果は' + score + '点でした。マイナスな表現が含まれますが、投稿しますか？') ){
     location.href = "/";
@@ -17,16 +14,9 @@ if(score < 0 ){
   if( confirm('感情分析結果は' + score + '点でした。投稿しますか？') ){
     $.ajax({
     type: 'POST',
-    url: ,
-    data: {
-      id: {id: id },
-      reviewer_nurse_id: {reviewer_nurse_id: reviewer_nurse_id },
-      schedule_id: {schedule_id: schedule_id },
-      review: {review: review },
-      score: {score: score }
-    },
-    dataType: "json"
+    url: url,
+    data: data,
+    dataType: 'text'
     })
-    .done
   }
 }

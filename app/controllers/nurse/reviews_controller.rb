@@ -12,14 +12,12 @@ class Nurse::ReviewsController < ApplicationController
   def confirm
     @review = Review.new(review_params)
     @review.score = Language.get_data(review_params[:review])
-    # redirect_to  schedule_path(@review.schedule_id)
-
   end
 
   #レビューの新規投稿
   def create
-    review = Review.new(review_params)
-    review.score = Language.get_data(review_params[:review])
+    binding.pry
+    review = Review.new(params[:data])
     if review.save
       redirect_to schedule_reviews_path(review.schedule_id)
     else
