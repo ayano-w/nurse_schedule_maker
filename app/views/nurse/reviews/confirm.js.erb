@@ -13,4 +13,7 @@ if( confirm(confirm_message) ){
   .done( (data) =>{
     window.location = '<%= schedule_reviews_path(@review.schedule_id) %>';
   })
+  .fail( (data) =>{
+    alert('すでにレビュー済みです');
+  })
 }

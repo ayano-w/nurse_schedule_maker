@@ -17,7 +17,10 @@ class Nurse::ReviewsController < ApplicationController
   #レビューの新規投稿
   def create
     review = Review.new(review_params)
-    review.save
+    if review.save
+    else
+      render status: 500, json: { status: 500, message: "FAILED"}
+    end
   end
 
   #レビューの更新
