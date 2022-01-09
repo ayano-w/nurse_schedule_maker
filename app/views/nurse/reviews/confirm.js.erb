@@ -14,6 +14,6 @@ if( confirm(confirm_message) ){
     window.location = '<%= schedule_reviews_path(@review.schedule_id) %>';
   })
   .fail( (data) =>{
-    alert('すでにレビュー済みです');
+    $('#review_alert').html("<%= j(render 'nurse/schedules/review_alert') %>");
   })
 }

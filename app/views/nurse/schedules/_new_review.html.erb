@@ -1,7 +1,6 @@
 <div class="row p-4 mt-5 shadow">
 
   <div class="col-10">
-    <%#= form_with model:[schedule,review], data: {remote: true} do |f| %>
     <%= form_with  model: @review, url: nurses_reviews_confirm_path, data: {remote: true} do |f| %>
     <div class="form-group row p-1">
       <div class="col-7">

@@ -20,6 +20,8 @@ class Nurse::SchedulesController < ApplicationController
     # レビュー投稿用
     @review = Review.new
 
+    @review_alert = nil
+
   end
 
   # スケジュール一覧の表示(今日の日付、ログイン看護師と同じ病棟の看護師のもの）
