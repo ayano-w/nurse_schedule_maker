@@ -167,3 +167,21 @@ h3 {
   background-color: #ed6d35;
 }
 
+//ページネーション自体のデザイン*
+.pagination>li>a {
+  border: none;
+  color: #2b2b2b;
+}
+
+// 表示しているページ番号のデザイン
+.pagination>.active>a {
+  background-color: #006888;
+  border-radius: 30px;
+}
+
+//ホバー時のデザイン
+.pagination>li>a:hover {
+  border-radius: 30px;
+  background-color: #006888;
+  color: #f8f4e6;
+}
