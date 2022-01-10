@@ -1,0 +1,26 @@
+<div class="row p-4 mt-5 shadow">
+
+  <div class="col-10">
+    <%= form_with  model: @review, url: nurses_reviews_confirm_path, data: {remote: true} do |f| %>
+    <div class="form-group row p-1">
+      <div class="col-7">
+        <%= f.label :review do %><i class="fas fa-user-edit"></i>レビューをする<small>(投稿前に感情分析が実施されます)</small><% end %>
+        <%= f.text_area :review, class: "form-control" %>
+      </div>
+      <div class="col-5 align-self-end">
+      <!--reviewer_nurse_は投稿をした看護師。投稿される看護師はscheduleに紐づいている(nurse_id)-->
+        <%= f.hidden_field :reviewer_nurse_id, value: current_nurse.id %>
+        <%= f.hidden_field :schedule_id, value: schedule.id %>
+        <%= f.submit "感情分析・投稿", class: "btn btn-dark col-5" %>
+      </div>
+    </div>
+    <% end %>
+  </div>
+
+  <div class="col-2 align-self-end">
+    <%= link_to schedule_reviews_path(schedule), class: "body_link" do %>
+      他のレビューをみる<i class="fas fa-arrow-circle-right"></i>
+    <% end %>
+  </div>
+
+</div>

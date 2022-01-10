@@ -1,3 +1,9 @@
+<span id="review_alert">
+<% if @review_alert == nil %>
+<% else %>
+  <%= render 'review_alert', review_alert: @review_alert %>
+<% end %>
+</span>
 <div class="container">
   <div class="row">
     <div class="col mx-auto">
@@ -15,42 +21,17 @@
       <%= render 'schedule', task_lists: @task_lists, task_list: @task_list, schedule: @schedule %>
 
      <!--レビュー投稿と表示画面への遷移リンク -->
-      <div class="row p-4 mt-5 shadow">
-        <div class="col-8">
-          <%= form_with model:[@schedule,@review], local:true do |f| %>
-          <div class="form-group row p-1">
-            <div class="col-9">
-              <%= f.label :review do %><i class="fas fa-user-edit"></i>レビューをする<% end %>
-              <%= f.text_area :review, class: "form-control" %>
-            </div>
-            <div class="col-3 align-self-end">
-            <!--reviewer_nurse_は投稿をした看護師。投稿される看護師はscheduleに紐づいている(nurse_id)-->
-              <%= f.hidden_field :reviewer_nurse_id, value: current_nurse.id %>
-              <%= f.hidden_field :schedule_id, value: @schedule.id %>
-              <%= f.submit "投稿", class: "btn btn-dark col-5" %>
-            </div>
-          </div>
-          <% end %>
-        </div>
-        <div class="col-4 align-self-end">
-          <%= link_to schedule_reviews_path(@schedule), class: "body_link" do %>
-            他のレビューをみる<i class="fas fa-arrow-circle-right"></i>
-          <% end %>
-        </div>
-      </div>
-
-
-      </div>
+      <%= render 'new_review', schedule: @schedule, review: @review %>
 
       <!--スケジュールを削除する（タスクもすべて削除される）。ログインユーザーにのみ表示される。-->
       <% if @schedule.nurse_id == current_nurse.id %>
       <div class="row p-3">
         <div class="col-5">
-          <%= link_to schedule_path(@schedule.id), method: :delete, class: 'body_link' do %>
+          <%= link_to schedule_path(@schedule.id), method: :delete, data: { confirm: "本当に削除しますか？"}, class: 'body_link' do %>
             <%= @schedule.created_at.strftime('%m月%d日') %>のスケジュールを削除する
           <% end %>
         </div>
-        <p class="small">実行後、こちらのスケジュール関連するタスクとレビューがすべて削除されます。</p>
+        <p class="small">実行後、こちらのスケジュールに関連するタスクとレビューがすべて削除されます。</p>
       </div>
       <% end %>
 

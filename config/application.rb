@@ -10,7 +10,7 @@ module WcpPortfolio
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.2
-
+    config.paths.add 'lib', eager_load: true # Natrural Laungage追加に伴い、lib以下のファイルを呼ぶため
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
