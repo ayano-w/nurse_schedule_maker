@@ -68,13 +68,11 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'devise'
 gem 'kaminari'
-gem 'enum_help'
-gem 'bootstrap'
 gem 'jquery-rails'
 gem 'tod'
 gem 'rails-i18n', '~> 5.1'
 gem 'dotenv-rails'
-gem 'data-confirm-modal'
+gem 'bootstrap'
 
 group :production do
   gem 'mysql2'
