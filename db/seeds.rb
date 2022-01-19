@@ -35,6 +35,13 @@ Ward.all.each do |ward|
   end
 end
 
+# 看護師のサンプル（固定の名前）
+Nurse.create!(
+  name: "テスト看護師(1S)",
+  password: "password",
+  ward_id: "1s"
+)
+
 # 患者のサンプル。１病棟20名ずつの設定
 Ward.all.each do |ward|
   20.times do |n|
