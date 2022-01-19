@@ -28,10 +28,11 @@
 ### 機能
 管理者：看護師の出欠登録、病棟登録、患者登録。
 看護師：１日１回スケジュールを作成。出勤中の他看護師のスケジュールを閲覧、レビュー投稿。
+(ノートPC以上の画面で使用することを想定しています)
 
 ##　テストユーザー
-管理者： [名前]病棟名(1s,2n,1n,2sのいずれか) [パスワード]password
-看護師： [名前]管理者画面で確認いただけます  [パスワード]password
+管理者： [名前]1s [パスワード]password
+看護師： [名前]テスト看護師(1s)  [パスワード]password
 
 ## 設計書
 https://drive.google.com/drive/folders/1uWwmgjbzg1ocmdnXAIWuqjzSb4Vtdgyk?usp=sharing

@@ -51,7 +51,7 @@
             <%= ' task_rate_1' if task.rate == 1 %>
             <%= ' task_rate_2' if task.rate == 2 %>
             <%= ' task_rate_3' if task.rate == 3 %>"
-            style="--task_p: <%= task.calculation_task_position(task) %>%;">
+            style="--task_p: <%= task.calculate_task_position(task) %>%;">
             <span class="small">
               <%= task.task_start_time.to_s(:datetime) %>
             </span>
