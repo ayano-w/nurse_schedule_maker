@@ -185,3 +185,18 @@ h3 {
   background-color: #006888;
   color: #f8f4e6;
 }
+
+
+// ログインページのレスポンシブ
+@media (min-width: 992px){
+  .login {
+    width: 25%;
+    }
+  }
+
+// サインアップページのレスポンシブ
+@media (min-width: 992px){
+  .signup {
+    width: 50%;
+    }
+  }
