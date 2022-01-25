@@ -1,11 +1,9 @@
 <!--入力に不備があった場合エラーが表示される-->
-<% if @task.errors.any? %>
-<div class="error">
-  <% @task.errors.full_messages.each do |message| %>
-    <%= message %>
-  <% end %>
+
+<div class="notice">
+  <%= alert %>
 </div>
-<% end %>
+
 <div class="container">
   <div class="row">
     <div class="col mx-auto">

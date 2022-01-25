@@ -29,7 +29,7 @@ class Nurse::TasksController < ApplicationController
     if task.update(task_params)
       redirect_to schedule_path(task.task_list.schedule_id)
     else
-      redirect_to edit_task_list_task_path(params[:task_list_id],params[:id])
+      redirect_to edit_task_list_task_path(params[:task_list_id],params[:id]), alert: "10文字以内のタスク名を入力してください"
     end
   end
 
