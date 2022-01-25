@@ -1,5 +1,5 @@
 
-#  <font color="CornflowerBlue">Nurse Schedule Maker</font>
+#  <font color=#006888>Nurse Schedule Maker</font>
 
 ## サイト概要
 看護師のためのスケジュール管理サイト。
