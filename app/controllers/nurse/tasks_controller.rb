@@ -22,6 +22,7 @@ class Nurse::TasksController < ApplicationController
   def edit
     @task = Task.find(params[:id])
     @task_list = TaskList.find(params[:task_list_id])
+    # schedule = Schedule.find_by(id: @task_list.schedule_id)
   end
 
   def update
