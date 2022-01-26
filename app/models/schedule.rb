@@ -10,6 +10,4 @@ class Schedule < ApplicationRecord
     find_by(created_at: Time.zone.now.all_day, nurse_id: nurse.id).present?
   end
 
-
-
 end
