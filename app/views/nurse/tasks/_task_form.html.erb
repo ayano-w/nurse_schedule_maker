@@ -14,16 +14,7 @@
      <div class="field col-2 py-1 mx-auto" id="star">
       <%= f.label :rate, "優先度" %></br>
       <%= f.hidden_field :rate, id: :review_star %>
-      <script>
-        $('#star').raty({
-           number: 3,
-           score : 1,
-           size : 36,
-           starOff: '<%= asset_path('star-off.png') %>',
-           starOn : '<%= asset_path('star-on.png') %>',
-           scoreName: 'task[rate]'
-        });
-      </script>
+      <%= render 'raty' %>
     </div>
 
     <div class="col-3 my-auto">
