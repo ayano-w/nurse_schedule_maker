@@ -9,7 +9,10 @@ class Schedule < ApplicationRecord
   def self.has_schedule?(nurse)
     find_by(created_at: Time.zone.now.all_day, nurse_id: nurse.id).present?
   end
-
-
+  
+  def self.collect_schedules(ward_id)
+    nurse_ids = Nurse.attendance_nurse_ids(ward_id)
+    where(created_at: Time.zone.now.all_day, nurse_id: [nurse_ids])
+  end  
 
 end

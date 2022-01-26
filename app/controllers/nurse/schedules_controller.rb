@@ -19,21 +19,12 @@ class Nurse::SchedulesController < ApplicationController
 
     # レビュー投稿用
     @review = Review.new
-
     @review_alert = nil
-
   end
 
   # スケジュール一覧の表示(今日の日付、ログイン看護師と同じ病棟の看護師のもの）
   def index
-    # @schedulesに今日の日付かつ、ログインユーザーの所属する病棟かつ、出勤日の看護師のスケジュールを格納する
-    schedules = Schedule.where(created_at: Time.zone.now.all_day)
-    nurses = Nurse.where(ward_id: current_nurse.ward_id, attendance: true)
-    nurse_id = []
-    nurses.each do |nurse|
-      nurse_id.push(nurse.id)
-    end
-      @schedules = schedules.where(nurse_id: [nurse_id] )
+    @schedules = Schedule.collect_schedules(current_nurse.ward)
   end
 
   # スケジュールの作成

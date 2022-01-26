@@ -15,7 +15,6 @@ class Nurse < ApplicationRecord
    validates :ward, presence: true
 
 
-
   #emailの設定をdeviseから除外する
    def email_required?
      false
@@ -25,4 +24,8 @@ class Nurse < ApplicationRecord
      false
    end
 
+  # ログイン看護師と同じ病棟かつ出勤日の看護師を抽出
+  def self.attendance_nurse_ids(ward_id)
+    where(ward_id: ward_id, attendance: true).pluck(:id)
+  end
 end
