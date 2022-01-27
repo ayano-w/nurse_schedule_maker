@@ -1,5 +1,6 @@
 class Nurse::SchedulesController < ApplicationController
   before_action :authenticate_nurse!, :nurse_ward_nil?
+  before_action :set_schedule, only:[:show, :destroy]
 
   # スケジュールの作成
   def new
@@ -8,7 +9,6 @@ class Nurse::SchedulesController < ApplicationController
 
   # スケジュールの詳細表示、編集
   def show
-    @schedule = Schedule.find(params[:id])
     #スケジュールに紐づく患者のスケジュール（１行分）を表示させる
     @task_list = TaskList.new
     @task_lists = TaskList.includes(:tasks).where(schedule_id: params[:id])
@@ -35,9 +35,8 @@ class Nurse::SchedulesController < ApplicationController
 
   # スケジュールの削除
   def destroy
-    schedule = Schedule.find(params[:id])
-    schedule_date = schedule.created_at.strftime("%Y%m%d")
-    schedule.destroy
+    schedule_date = @schedule.created_at.strftime("%Y%m%d")
+    @schedule.destroy
     if schedule_date == Date.today.strftime("%Y%m%d")
       redirect_to top_path, notice: 'スケジュールを削除しました'
     else
@@ -50,6 +49,10 @@ class Nurse::SchedulesController < ApplicationController
 
   def schedule_params
     params.require(:schedule).permit(:nurse_id)
+  end
+
+  def set_schedule
+    @schedule = Schedule.find(params[:id])
   end
 
 end
