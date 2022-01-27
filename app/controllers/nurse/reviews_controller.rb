@@ -2,6 +2,8 @@ class Nurse::ReviewsController < ApplicationController
   before_action :authenticate_nurse!, :nurse_ward_nil?
   before_action :set_new_review, only: [:confirm, :create]
   before_action :set_review, only: [:update, :destroy]
+  before_action :ensure_correct_nurse, only:[:update, :destroy]
+
 
   #特定のスケジュールに紐づくレビュー一覧を表示
   def index
@@ -48,5 +50,12 @@ class Nurse::ReviewsController < ApplicationController
   def set_review
     @review =  Review.find(params[:id])
   end
+  
+  def ensure_correct_nurse
+    unless @review.reviewer_nurse_id == current_nurse.id
+      redirect_to schedules_path, notice: "他人のレビューを編集・削除することはできません"
+    end
+  end
+
 
 end
