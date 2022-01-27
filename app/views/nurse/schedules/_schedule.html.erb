@@ -53,6 +53,10 @@
             <%= ' task_rate_3' if task.rate == 3 %>"
             style="--task_p: <%= task.calculate_task_position(task) %>%;">
             <span class="small">
+              <%= check_box task, update [, オプション, checked_value = "1", unchecked_value = "0"] %>
+               <!--<i class="far fa-square"></i>-->
+            </span>
+            <span class="small">
               <%= task.task_start_time.to_s(:datetime) %>
             </span>
             <span class="learge">
