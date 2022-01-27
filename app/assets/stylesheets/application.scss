@@ -59,8 +59,15 @@ h3 {
 }
 .task_link{
   text-decoration: none;
-
 }
+.task_status_link{
+  text-decoration:underline;
+  text-decoration-color: #fffff9;;
+}
+.line-through{
+  text-decoration: line-through;
+}
+
 
 // fontawesomeの色
 .fa-pencil-alt {
@@ -71,6 +78,12 @@ h3 {
 }
 .fa-plus-square{
   color: #006888 ;
+}
+.fa-square{
+  color: #2b2b2b ;
+}
+.fa-check-square{
+  color: #2b2b2b ;
 }
 
 
