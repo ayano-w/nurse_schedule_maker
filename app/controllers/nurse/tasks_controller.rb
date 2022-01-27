@@ -3,7 +3,7 @@ class Nurse::TasksController < ApplicationController
   before_action :set_task_list
   before_action :set_task, only:[:edit, :update, :destroy]
   before_action :ensure_correct_nurse, only:[:edit, :update, :destroy]
-  
+
   #タスクの作成画面
   def new
     @task = Task.new
