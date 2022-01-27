@@ -1,5 +1,7 @@
 class Nurse::ReviewsController < ApplicationController
   before_action :authenticate_nurse!, :nurse_ward_nil?
+  before_action :set_new_review, only: [:confirm, :create]
+  before_action :set_review, only: [:update, :destroy]
 
   #特定のスケジュールに紐づくレビュー一覧を表示
   def index
@@ -9,13 +11,11 @@ class Nurse::ReviewsController < ApplicationController
 
   # スコアの計算と確認アラート表示
   def confirm
-    @review = Review.new(review_params)
     @review.score = Language.get_data(review_params[:review])
   end
 
   #レビューの新規投稿
   def create
-    @review = Review.new(review_params)
     if @review.save
     else
       render status: 500, json: { status: 500, message: "FAILED"}
@@ -24,16 +24,14 @@ class Nurse::ReviewsController < ApplicationController
 
   #レビューの更新
   def update
-    review = Review.find(params[:id])
-    review.score = Language.get_data(review_params[:review])
-    review.update(review_params)
-    redirect_to schedule_reviews_path(review.schedule_id)
+    @review.score = Language.get_data(review_params[:review])
+    @review.update(review_params)
+    redirect_to schedule_reviews_path(@review.schedule_id)
   end
 
   #レビューの削除
   def destroy
-    review = Review.find(params[:id])
-    review.destroy
+    @review.destroy
     redirect_to schedule_reviews_path(params[:schedule_id])
   end
 
@@ -41,6 +39,14 @@ class Nurse::ReviewsController < ApplicationController
 
   def review_params
     params.require(:review).permit(:reviewer_nurse_id, :schedule_id, :review, :score)
+  end
+
+  def set_new_review
+    @review = Review.new(review_params)
+  end
+
+  def set_review
+    @review =  Review.find(params[:id])
   end
 
 end
