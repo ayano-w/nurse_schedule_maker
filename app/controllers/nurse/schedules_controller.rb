@@ -1,6 +1,5 @@
 class Nurse::SchedulesController < ApplicationController
-  before_action :authenticate_nurse!
-  before_action :nurse_ward_nil?
+  before_action :authenticate_nurse!, :nurse_ward_nil?
 
   # スケジュールの作成
   def new

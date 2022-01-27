@@ -1,6 +1,5 @@
 class Nurse::TaskListsController < ApplicationController
-  before_action :authenticate_nurse!
-  before_action :nurse_ward_nil?
+  before_action :authenticate_nurse!, :nurse_ward_nil?
 
   #スケジュール作成画面で患者選択→追加を押すとスケジュールに選択した患者の行が追加される。
   def create

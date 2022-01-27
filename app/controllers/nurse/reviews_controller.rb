@@ -1,6 +1,5 @@
 class Nurse::ReviewsController < ApplicationController
-  before_action :authenticate_nurse!
-  before_action :nurse_ward_nil?
+  before_action :authenticate_nurse!, :nurse_ward_nil?
 
   #特定のスケジュールに紐づくレビュー一覧を表示
   def index
