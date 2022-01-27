@@ -1,7 +1,7 @@
 <script>
   $('#star').raty({
    number: 3,
-   score : 1,
+   score : <%= task.rate %>,
    size : 36,
    starOff: '<%= asset_path('star-off.png') %>',
    starOn : '<%= asset_path('star-on.png') %>',
