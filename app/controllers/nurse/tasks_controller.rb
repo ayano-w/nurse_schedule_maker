@@ -1,9 +1,9 @@
 class Nurse::TasksController < ApplicationController
   before_action :authenticate_nurse!, :nurse_ward_nil?
   before_action :set_task_list
-  before_action :set_task, only:[:edit, :update, :destroy]
+  before_action :set_task, only:[:edit, :update, :destroy, :update_status]
   before_action :ensure_correct_nurse, only:[:edit, :update, :destroy]
-  
+
   #タスクの作成画面
   def new
     @task = Task.new
@@ -19,7 +19,6 @@ class Nurse::TasksController < ApplicationController
     end
   end
 
-  #タスクの編集画面
   def edit
   end
 
@@ -33,6 +32,18 @@ class Nurse::TasksController < ApplicationController
 
   def destroy
     @task.delete
+    redirect_to schedule_path(@task_list.schedule_id)
+  end
+
+  def update_status
+    if @task.status == true
+      @task.status = false
+      @task.save
+    elsif
+      @task.status ==false
+      @task.status = true
+      @task.save
+    end
     redirect_to schedule_path(@task_list.schedule_id)
   end
 

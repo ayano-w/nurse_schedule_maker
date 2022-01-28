@@ -34,7 +34,11 @@ Rails.application.routes.draw do
     post 'nurses/reviews/confirm' => 'reviews#confirm'
 
     resources :task_lists, only: [:create, :destroy] do
-      resources :tasks, expect: [:index, :show]
+      resources :tasks, expect: [:index, :show] do
+        member do
+          patch 'update_status'
+        end
+      end
     end
   end
 
