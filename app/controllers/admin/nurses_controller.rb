@@ -1,8 +1,8 @@
 class Admin::NursesController < ApplicationController
   before_action :authenticate_admin!
   before_action :admin_ward_nil?
-  
-  
+
+
   def index
     admin_ward_id = current_admin.ward_id
     @nurses = Nurse.where(ward_id: admin_ward_id)
@@ -24,9 +24,6 @@ class Admin::NursesController < ApplicationController
     end
     redirect_to admin_nurses_path
   end
-
-
-
 
   private
   def nurse_params

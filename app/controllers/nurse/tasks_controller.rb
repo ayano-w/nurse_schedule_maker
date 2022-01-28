@@ -2,7 +2,7 @@ class Nurse::TasksController < ApplicationController
   before_action :authenticate_nurse!, :nurse_ward_nil?
   before_action :set_task_list
   before_action :set_task, only:[:edit, :update, :destroy, :update_status]
-  before_action :ensure_correct_nurse, only:[:edit, :update, :destroy]
+  before_action :ensure_correct_nurse, only:[:edit, :update, :destroy, :update_status]
 
   #タスクの作成画面
   def new
@@ -40,7 +40,6 @@ class Nurse::TasksController < ApplicationController
       @task.status = false
       @task.save
     elsif
-      @task.status ==false
       @task.status = true
       @task.save
     end
