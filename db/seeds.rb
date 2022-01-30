@@ -82,8 +82,7 @@ TaskList.all.each do |task_list|
     task_list.tasks.create!(
       task: "サンプル",
       rate: rate,
-      task_start_time: task_start_time,
-      status: [true, false].sample
+      task_start_time: task_start_time
     )
   end
 end
