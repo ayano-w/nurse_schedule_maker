@@ -52,20 +52,10 @@
             <%= ' task_rate_2' if task.rate == 2 && task.status == true %>
             <%= ' task_rate_3' if task.rate == 3 && task.status == true %>"
             style="--task_p: <%= task.calculate_task_position(task) %>%;">
+
             <!--show画面だった場合、タスクステータスを切替できるチェックボックスを表示する-->
-            <% if (controller.action_name == "show") && (task_list.schedule.nurse_id == current_nurse.id) %>         
-            <span class="small">
-              <% if task.status == true %>
-                <%= link_to update_status_task_list_task_path(task_list.id, task), method: :PATCH, class: 'task_status_link' do %>
-                   <i class="far fa-square"></i>
-                <% end %>
-              <% else %>
-                <%= link_to update_status_task_list_task_path(task_list.id, task), method: :PATCH, class: 'task_status_link' do %>
-                   <i class="far fa-check-square"></i>
-                <% end %>
-              <% end %>
-            </span>
-            <% end %>
+            <%= render 'task_status_btn', task_list: task_list, task: task %>
+
             <span class="small">
               <%= task.task_start_time.to_s(:datetime) %>
             </span>
