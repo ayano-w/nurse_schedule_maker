@@ -1,0 +1,34 @@
+<div class="task_position
+  <%= ' task_rate_1' if task.rate == 1 && task.status == true %>
+  <%= ' task_rate_2' if task.rate == 2 && task.status == true %>
+  <%= ' task_rate_3' if task.rate == 3 && task.status == true %>"
+  style="--task_p: <%= task.calculate_task_position(task) %>%;">
+
+  <!--show画面だった場合、タスクステータスを切替できるチェックボックスを表示する-->
+  <% if (controller.action_name == "show") && (task_list.schedule.nurse_id == current_nurse.id) %>
+  <span class="small", id="task_<%= task.id %>">
+    <% if task.status == true %>
+      <%= link_to update_status_task_list_task_path(task_list.id, task), method: :PATCH, remote: true, class: 'task_status_link' do %>
+         <i class="far fa-square"></i>
+      <% end %>
+    <% else %>
+      <%= link_to update_status_task_list_task_path(task_list.id, task), method: :PATCH, remote: true, class: 'task_status_link' do %>
+         <i class="far fa-check-square"></i>
+      <% end %>
+    <% end %>
+  </span>
+  <% end %>
+
+  <span class="small">
+    <%= task.task_start_time.to_s(:datetime) %>
+  </span>
+  <span class ="<%= ' learge' if task.status == true %><%= ' line-through' if task.status == false %>">
+    <%= task.task %>
+  </span>
+  <span>
+    <% if (controller.action_name == "show") && (task_list.schedule.nurse_id == current_nurse.id) && task.status == true %>
+      <%= link_to edit_task_list_task_path(task_list.id,task.id), local:true do %><i class="fas fa-pencil-alt"></i><% end %>
+    <% end %>
+  </span>
+</div>
+

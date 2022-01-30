@@ -36,18 +36,13 @@ class Nurse::TasksController < ApplicationController
   end
 
   def update_status
-    
     if @task.status == true
       @task.status = false
       @task.save
     elsif
       @task.status = true
-      
-      
       @task.save
     end
-    
-    # redirect_to schedule_path(@task_list.schedule_id)
   end
 
 

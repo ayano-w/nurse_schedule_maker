@@ -1,2 +1,2 @@
 
-$("#task_<%= @task.id %>").html("<%= j(render 'nurse/schedules/task_status_btn', task: @task, task_list: @task_list) %>");
+$("#task_<%= @task.id %>").html("<%= j(render 'nurse/schedules/task', task: @task, task_list: @task_list) %>");
