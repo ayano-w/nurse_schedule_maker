@@ -24,6 +24,13 @@ Ward.all.each do |ward|
   )
 end
 
+# 看護師のサンプル（固定の名前）
+Nurse.create!(
+  name: "テスト看護師(1S)",
+  password: "password",
+  ward_id: "1s"
+)
+
 # 看護師のサンプル。１病棟10名ずつの設定。
 Ward.all.each do |ward|
   10.times do |n|
@@ -35,16 +42,10 @@ Ward.all.each do |ward|
   end
 end
 
-# 看護師のサンプル（固定の名前）
-Nurse.create!(
-  name: "テスト看護師(1S)",
-  password: "password",
-  ward_id: "1s"
-)
 
 # 患者のサンプル。１病棟20名ずつの設定
 Ward.all.each do |ward|
-  20.times do |n|
+  15.times do |n|
     sample_name = Faker::Name.name
     birthday = Faker::Date.birthday
     ward.patients.create!(
@@ -62,6 +63,12 @@ Nurse.all.each do |nurse|
     [{created_at: created_at_a}, {created_at: created_at_b}]
     )
 end
+
+Schedule.create!(
+  created_at: Date.today,
+  nurse_id: 1
+)
+
 
 # タスクリスト（スケジュールの中身）のサンプル
 Schedule.all.each do |schedule|
