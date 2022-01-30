@@ -1,6 +1,6 @@
   <!--show画面だった場合、タスクステータスを切替できるチェックボックスを表示する-->
   <% if ((controller.action_name == "show") || (controller.action_name == "update_status")) && (task_list.schedule.nurse_id == current_nurse.id) %>
-  <span class="small", id="task_<%= task.id %>">
+  <span class="small">
     <% if task.status == true %>
       <%= link_to update_status_task_list_task_path(task_list.id, task), method: :PATCH, remote: true, class: 'task_status_link' do %>
          <i class="far fa-square"></i>
