@@ -8,7 +8,7 @@
 - レビューを残すことで計画立案に慣れない新人看護師の育成の助けになります。<br>
 
 スケジュール画面　(ノートPC以上の画面で使用することを想定しています)
-![image](https://user-images.githubusercontent.com/91587327/150925666-8e48874e-40d4-400d-8706-709565684d85.png)
+![image](https://user-images.githubusercontent.com/91587327/151690013-80fedaec-9981-4101-b2f9-214d11228372.png)
 
 ### サイトテーマ
 看護師の日常業務管理ツール
