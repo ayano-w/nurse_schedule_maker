@@ -1,3 +1,9 @@
+<div class="task_position
+<%= ' task_rate_1' if task.rate == 1 && task.status == true %>
+<%= ' task_rate_2' if task.rate == 2 && task.status == true %>
+<%= ' task_rate_3' if task.rate == 3 && task.status == true %>"
+style="--task_p: <%= task.calculate_task_position(task) %>%;">
+
   <!--show画面だった場合、タスクステータスを切替できるチェックボックスを表示する-->
   <% if ((controller.action_name == "show") || (controller.action_name == "update_status")) && (task_list.schedule.nurse_id == current_nurse.id) %>
   <span class="small">
@@ -25,3 +31,4 @@
     <% end %>
   </span>
 
+</div

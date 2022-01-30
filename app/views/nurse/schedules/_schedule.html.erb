@@ -47,14 +47,7 @@
       <div class="task_position-wrp">
         <!--タスクリストに紐づくタスクを集めてeachで表示させる-->
         <% (Task.collect_tasks(task_list)).each do |task| %>
-         <div id="task_<%= task.id %>",
-         class="task_position
-          <%= ' task_rate_1' if task.rate == 1 && task.status == true %>
-          <%= ' task_rate_2' if task.rate == 2 && task.status == true %>
-          <%= ' task_rate_3' if task.rate == 3 && task.status == true %>"
-          style="--task_p: <%= task.calculate_task_position(task) %>%;">
-            <%= render 'task', task_list: task_list,task: task %>
-          </div>
+          <span id="task_<%= task.id %>"><%= render 'task', task_list: task_list,task: task %></span>
         <% end %>
       </div>
     </div>
