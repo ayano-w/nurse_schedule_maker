@@ -36,21 +36,25 @@ class Nurse::TasksController < ApplicationController
   end
 
   def update_status
+    
     if @task.status == true
       @task.status = false
       @task.save
     elsif
       @task.status = true
+      
+      
       @task.save
     end
-    redirect_to schedule_path(@task_list.schedule_id)
+    
+    # redirect_to schedule_path(@task_list.schedule_id)
   end
 
 
   private
 
   def task_params
-    params.require(:task).permit(:task, :task_start_time, :rate, :task_list_id)
+    params.require(:task).permit(:task, :task_start_time, :rate, :task_list_id, :status)
   end
 
 
