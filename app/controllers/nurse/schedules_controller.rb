@@ -1,6 +1,8 @@
 class Nurse::SchedulesController < ApplicationController
   before_action :authenticate_nurse!, :nurse_ward_nil?
   before_action :set_schedule, only:[:show, :destroy]
+  before_action :set_nums, only:[:show, :index]
+
 
   # スケジュールの作成
   def new
@@ -54,5 +56,10 @@ class Nurse::SchedulesController < ApplicationController
   def set_schedule
     @schedule = Schedule.find(params[:id])
   end
+
+  def set_nums
+    @nums = [*8..18]
+  end
+
 
 end
