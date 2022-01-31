@@ -35,7 +35,7 @@
           <%= task_list.patient.name %>
         </div>
         <div class="col-5">
-          <!--鉛筆マークを押すとタスクが追加される-->
+          <!--プラスマークを押すとタスクが追加される-->
             <% if (controller.action_name == "show") && (task_list.schedule.nurse_id == current_nurse.id) %>
               <%= link_to new_task_list_task_path(task_list.id) do %><i class="far fa-plus-square"></i><% end %>
             <% end %>
@@ -44,42 +44,15 @@
     </div>
 
     <div class="col-9">
-       <div class="task_position-wrp">
-          <!--タスクリストに紐づくタスクを集めてeachで表示させる-->
-          <% (Task.collect_tasks(task_list)).each do |task| %>
-          <div class="task_position
-            <%= ' task_rate_1' if task.rate == 1 && task.status == true %>
-            <%= ' task_rate_2' if task.rate == 2 && task.status == true %>
-            <%= ' task_rate_3' if task.rate == 3 && task.status == true %>"
-            style="--task_p: <%= task.calculate_task_position(task) %>%;">
-            <!--show画面だった場合、タスクステータスを切替できるチェックボックスを表示する-->
-            <% if (controller.action_name == "show") && (task_list.schedule.nurse_id == current_nurse.id) %>         
-            <span class="small">
-              <% if task.status == true %>
-                <%= link_to update_status_task_list_task_path(task_list.id, task), method: :PATCH, class: 'task_status_link' do %>
-                   <i class="far fa-square"></i>
-                <% end %>
-              <% else %>
-                <%= link_to update_status_task_list_task_path(task_list.id, task), method: :PATCH, class: 'task_status_link' do %>
-                   <i class="far fa-check-square"></i>
-                <% end %>
-              <% end %>
-            </span>
-            <% end %>
-            <span class="small">
-              <%= task.task_start_time.to_s(:datetime) %>
-            </span>
-            <span class ="<%= ' learge' if task.status == true %><%= ' line-through' if task.status == false %>">
-              <%= task.task %>
-            </span>
-            <span>
-              <% if (controller.action_name == "show") && (task_list.schedule.nurse_id == current_nurse.id) && task.status == true %>
-                <%= link_to edit_task_list_task_path(task_list.id,task.id), local:true do %><i class="fas fa-pencil-alt"></i><% end %>
-              <% end %>
-            </span>
+      <div class="task_position-wrp">
+        <!--タスクリストに紐づくタスクを集めてeachで表示させる-->
+        <% (Task.collect_tasks(task_list)).each do |task| %>
+          <div class="task_position"
+               style="--task_p: <%= task.calculate_task_position(task) %>%;", id="task_<%= task.id %>" >
+            <%= render 'task', task_list: task_list,task: task %>
           </div>
-          <% end %>
-       </div>
+        <% end %>
+      </div>
     </div>
 
     <div class="col-1">
