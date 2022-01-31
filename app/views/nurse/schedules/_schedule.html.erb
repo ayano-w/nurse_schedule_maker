@@ -47,7 +47,10 @@
       <div class="task_position-wrp">
         <!--タスクリストに紐づくタスクを集めてeachで表示させる-->
         <% (Task.collect_tasks(task_list)).each do |task| %>
-          <span id="task_<%= task.id %>"><%= render 'task', task_list: task_list,task: task %></span>
+          <div class="task_position"
+               style="--task_p: <%= task.calculate_task_position(task) %>%;", id="task_<%= task.id %>" >
+            <%= render 'task', task_list: task_list,task: task %>
+          </div>
         <% end %>
       </div>
     </div>
