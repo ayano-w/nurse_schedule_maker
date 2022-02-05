@@ -31,20 +31,30 @@ Nurse.create!(
   ward_id: "1s"
 )
 
-# 看護師のサンプル。１病棟10名ずつの設定。
-Ward.all.each do |ward|
-  10.times do |n|
+# # 看護師のサンプル。１病棟10名ずつの設定。
+# Ward.all.each do |ward|
+#   10.times do |n|
+#     sample_name = Faker::Name.name
+#     ward.nurses.create!(
+#       name: sample_name,
+#       password: "password"
+#       )
+#   end
+# end
+
+# 1s病棟だけ看護師を３０人作成
+30.times do |n|
     sample_name = Faker::Name.name
-    ward.nurses.create!(
+    Nurse.create!(
       name: sample_name,
-      password: "password"
+      password: "password",
+      ward_id: "1s"
       )
-  end
 end
 
 
-# 患者のサンプル。１病棟20名ずつの設定
-Ward.all.each do |ward|
+# 患者のサンプル。１s病棟20名ずつの作成
+Ward.where(id: 1).each do |ward|
   15.times do |n|
     sample_name = Faker::Name.name
     birthday = Faker::Date.birthday
@@ -55,19 +65,30 @@ Ward.all.each do |ward|
   end
 end
 
-# スケジュールのサンプル。看護師ごとにスケジュールを二つずつ作成。
-Nurse.all.each do |nurse|
-  created_at_a = Faker::Date.between(from: 2.days.ago, to: Date.today)
-  created_at_b = Faker::Date.between(from: 5.days.ago, to: 3.days.ago)
-  nurse.schedules.create!(
-    [{created_at: created_at_a}, {created_at: created_at_b}]
-    )
-end
+# # スケジュールのサンプル。看護師ごとにスケジュールを２つずつ作成。
+# Nurse.where(ward_id: 1).each do |nurse|
+#   created_at_a = Faker::Date.between(from: 2.days.ago, to: Date.today)
+#   created_at_b = Faker::Date.between(from: 5.days.ago, to: 3.days.ago)
+#   nurse.schedules.create!(
+#     [{created_at: created_at_a}, {created_at: created_at_b}]
+#     )
+# end
 
-Schedule.create!(
-  created_at: Date.today,
-  nurse_id: 1
-)
+
+# Schedule.create!(
+#   created_at: Date.today,
+#   nurse_id: 1
+# )
+
+# スケジュールのサンプル。看護師ごとにスケジュールを１０ずつ作成
+Nurse.where(ward_id: 1).each do |nurse|
+  15.times do |n|
+    created_at_a = Faker::Date.forward(days: 23)
+    nurse.schedules.create!(
+      created_at: created_at_a
+      )
+  end
+end
 
 
 # タスクリスト（スケジュールの中身）のサンプル

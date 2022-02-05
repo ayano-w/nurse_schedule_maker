@@ -3,7 +3,7 @@ class Nurse::NursesController < ApplicationController
 
   def show
     @nurse = current_nurse
-    @schedules = current_nurse.schedules
+    @schedules = current_nurse.schedules.order("created_at DESC")
   end
 
   def update
