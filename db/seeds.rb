@@ -42,8 +42,8 @@ Nurse.create!(
 #   end
 # end
 
-# 1s病棟だけ看護師を３０人作成
-30.times do |n|
+# 1s病棟だけ看護師を3人作成
+3.times do |n|
     sample_name = Faker::Name.name
     Nurse.create!(
       name: sample_name,
@@ -53,9 +53,9 @@ Nurse.create!(
 end
 
 
-# 患者のサンプル。１s病棟20名ずつの作成
+# 患者のサンプル。１s病棟20人作成
 Ward.where(id: 1).each do |ward|
-  15.times do |n|
+  20.times do |n|
     sample_name = Faker::Name.name
     birthday = Faker::Date.birthday
     ward.patients.create!(
@@ -82,8 +82,8 @@ end
 
 # スケジュールのサンプル。看護師ごとにスケジュールを１０ずつ作成
 Nurse.where(ward_id: 1).each do |nurse|
-  15.times do |n|
-    created_at_a = Faker::Date.forward(days: 23)
+  30.times do |n|
+    created_at_a = Date.today + n
     nurse.schedules.create!(
       created_at: created_at_a
       )
