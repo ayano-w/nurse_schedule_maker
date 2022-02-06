@@ -19,13 +19,13 @@
       <li class="navbar-item">
         <!--ログイン日時にスケジュールを作成していたらshowページへ、未作成の場合はトップページへ-->
         <% if Schedule.has_schedule?(current_nurse) == true %>
-          <%= link_to '本日のマイスケジュール', schedule_path((Schedule.find_by(created_at: Time.zone.now.all_day, nurse_id: current_nurse.id)).id), class: 'nav-link active' %>
+          <%= link_to 'マイスケジュール', schedule_path((Schedule.find_by(created_at: Time.zone.now.all_day, nurse_id: current_nurse.id)).id), class: 'nav-link active' %>
         <% else %>
-          <%= link_to '本日のマイスケジュール', top_path, class: 'nav-link active' %>
+          <%= link_to 'マイスケジュール', top_path, class: 'nav-link active' %>
         <% end %>
       </li>
       <li class="navbar-item">
-        <%= link_to '本日のスケジュール一覧', schedules_path, class: 'nav-link active' %>
+        <%= link_to '出勤者のスケジュール', schedules_path, class: 'nav-link active' %>
       </li>
       <li class="navbar-item">
         <%= link_to 'マイページ', mypage_path(current_nurse), class: 'nav-link active' %>
